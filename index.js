@@ -1,3 +1,15 @@
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+const Test = () => {
+  return <div>Testing</div>
+};
+
+ReactDOM.render(
+ <Test />,
+ 
+);
+
 require('dotenv')
   .config();
 const express = require('express');
