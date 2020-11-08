@@ -7,6 +7,9 @@ import {
   WrappedSignIn,
 } from './pages/Viewer';
 
+import {
+  UserSingleView,
+} from './pages/Eban/eban';
 
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
       <Route exact path="/">
         <h1>Welcome to the about</h1>
       </Route>
+      <Route exact path="/eban" component={UserSingleView}/>
     </Router>
   );
 }

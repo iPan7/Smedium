@@ -35,6 +35,7 @@ export const useUserView = () => {
   const params = useParams();
   console.log(params);
   const { selectedUser } = useSelector(state => state.user);
+  console.log(selectedUser);
   useEffect(() => {
     axios.get(`/api/users/${params.userId}`, { headers: { authorization: localStorage.getItem('token') }})
       .then(res => {

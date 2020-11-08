@@ -1,5 +1,4 @@
 import React from 'react';
-import { useUserView } from '../UserHooks';
 import Paper from '@material-ui/core/Paper'
 
 export const UserSingleView = () => {
@@ -7,11 +6,11 @@ export const UserSingleView = () => {
 
   return (
     <div>
-      <h1>Single User View</h1>;
-      <Paper elevation={3} />
+      <h1>Single User View</h1>
+      <Paper elevation={10} variant="outlined" square>
+            <h1>Hello World</h1>
+      </Paper>
     </div>
-  
-  )
+  );
 
-
-};
+}
