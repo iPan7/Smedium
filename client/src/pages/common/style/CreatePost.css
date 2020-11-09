@@ -1,0 +1,59 @@
+.App {
+	text-align: center;
+}
+
+.Post {
+	max-width: 800px;
+	width: 100%;
+	display: table;
+	margin: 0auto;
+	padding: 20px 50px;
+}
+.button {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+		0 17px 50px 0 rgba(0, 0, 0, 0.19);
+	background-color: blueviolet;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 20px;
+}
+.jumbotron {
+	background-image: linear-gradient(
+		to right,
+		#2bc0e4 0%,
+		#eaecc6 51%,
+		#2bc0e4 100%
+	);
+}
+.Smedium {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 900;
+	font-size: 25px;
+}
+
+.btn {
+	background-image: linear-gradient(to right, #3a7bd5 51%, #00d2ff);
+}
+#adp {
+	font-size: 30px;
+	font-family: bold, Helvetica, sans-serif;
+	background-image: linear-gradient(
+		45deg,
+		#ca4246 16.666%,
+		#e16541 16.666%,
+		#e16541 33.333%,
+		#f18f43 33.333%,
+		#f18f43 50%,
+		#8b9862 50%,
+		#8b9862 66.666%,
+		#476098 66.666%,
+		#476098 83.333%,
+		#a7489b 83.333%
+	);
+	color: white;
+}
