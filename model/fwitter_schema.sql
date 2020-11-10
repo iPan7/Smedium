@@ -19,3 +19,7 @@ CREATE TABLE fweets (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE posts (
+    title VARCHAR(50) NOT NULL,
+    content VARCHAR (255)
+);
