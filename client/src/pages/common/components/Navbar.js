@@ -4,15 +4,18 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import Typography from '@material-ui/core/Typography';
 
-
-import {useSelector, useDispatch} from 'react-redux';
-import {setViewerToken} from '../../Viewer';
+import { useSelector, useDispatch } from 'react-redux';
+import { setViewerToken } from '../../Viewer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     marginBottom: theme.spacing(3),
+
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -35,40 +38,50 @@ export default function ButtonAppBar() {
   };
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
+
+    <AppBar style={{ backgroundColor: '#4f3558' }} position="static">
+      <Toolbar>
+        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <MenuIcon />
+        </IconButton>
+        <Typography variant="h6" className={classes.title}>
+
           <Button
             component={Link}
             to='/'
             color="inherit">
-            About
-          </Button>
-          {
-            token ?
+            Smedium
+    </Button>
+        </Typography>
+
+        <Button a href="/CreatePost" color="inherit">Create Post</Button>
+
+        {
+          token ?
+            <Button
+              color='inherit'
+              onClick={handleSignOut}
+            >
+              Log Out
+        </Button> :
+            <div>
               <Button
-                color='inherit'
-                onClick={ handleSignOut}
-              >
-                Sign Out
-              </Button> :
-              <div>
-                <Button
-                  to='/signup'
-                  component={Link}
-                  color="inherit">
-                  Sign Up
-                </Button>
-                <Button
-                  to='/signin'
-                  component={Link}
-                  color="inherit">
-                  Sign In
-                </Button>
-              </div>
-          }
-        </Toolbar>
-      </AppBar>
-    </div>
+                to='/signup'
+                component={Link}
+                color="inherit">
+                Register
+          </Button>
+              <Button
+                to='/signin'
+                component={Link}
+                color="inherit">
+                Login
+          </Button>
+            </div>
+        }
+
+      </Toolbar>
+    </AppBar>
+
   );
 };

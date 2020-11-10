@@ -61,24 +61,35 @@ class SignUp extends Component {
     console.log(this.props);
     const { handleSubmit } = this.props;
     return (
-      <form noValidate autoComplete="off">
-        <Field
-          name='username'
-          label='username'
-          component={TextFieldInput}
-        />
-        <Field
-          name='password'
-          label='password'
-          component={TextFieldInput}
-        />
-        <Button
-          onClick={ handleSubmit(this.handleSignUp) }
-          variant="contained"
-          color="primary">
-          Sign up
+      <div
+
+
+        style={{
+          marginTop: '2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+
+        }}>
+        <form noValidate autoComplete="off">
+          <Field
+            name='username'
+            label='Username'
+            component={TextFieldInput}
+          />
+          <Field
+            name='password'
+            label='Password'
+            component={TextFieldInput}
+          />
+          <Button
+            onClick={handleSubmit(this.handleSignUp)}
+            variant="contained"
+            style={{ backgroundColor: '#4f3558', color: '#fff' }}>
+            Register
         </Button>
-      </form>
+        </form>
+      </div>
     );
   }
 }
