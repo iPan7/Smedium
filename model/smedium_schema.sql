@@ -14,5 +14,13 @@ CREATE TABLE users (
 CREATE TABLE posts (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     post VARCHAR(255) NOT NULL,
-    postId INT references posts(id)
+    postId INT references posts(id),
+    date_posted DATETIME default current_timestamp
 );
+
+CREATE TABLE friends (
+    id INT AUTO_INCREMENT NOT NULL,
+    friendId INT references users(id),
+    friendPost INT references posts(id)
+);
+
