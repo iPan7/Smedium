@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Save from "./Save";
 import ButtonAppBar from "./ButtonAppBar";
 import '../style/CreatePost.css';
+import { connect } from 'react-redux';
 
+import { withRouter } from 'react-router-dom';
 class CreatePost extends Component {
   state = {
     title: "",
@@ -11,6 +13,11 @@ class CreatePost extends Component {
     postSubmitted: false,
   };
 
+  componentDidMount() {
+    if (!this.props.viewer?.token) {
+      this.props.history.push('/');
+    }
+  }
   onChange = (input) => (e) => {
     this.setState({
       [input]: e.target.value,
@@ -29,6 +36,7 @@ class CreatePost extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <>
         <ButtonAppBar />
@@ -108,4 +116,12 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+
+function mapStateToProps({ viewer }) {
+  return { viewer };
+}
+
+
+
+
+export default connect(mapStateToProps)(CreatePost);
