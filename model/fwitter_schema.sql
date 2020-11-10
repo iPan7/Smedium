@@ -19,3 +19,8 @@ CREATE TABLE fweets (
     PRIMARY KEY (id)
 );
 
+CREATE TABLE friends (
+    id INT AUTO_INCREMENT NOT NULL,
+    friendId INT references users(id),
+    friendFweet INT references fweets(id)
+);
