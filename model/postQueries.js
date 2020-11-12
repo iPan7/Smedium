@@ -6,5 +6,16 @@ const findPostsByIdQuery = 'SELECT * FROM posts WHERE id = ?;';
 const findPostsByUserQuery = 'SELECT * FROM posts WHERE userId = ?;';
 const deletePostByIdQuery = 'DELETE FROM posts WHERE id = ?;';
 
-module.exports = { getAllPostsQuery }
+const updatePostCompletedById = 'UPDATE Posts SET completed = ? WHERE id = ?;';
+const updatePostTextById = 'UPDATE posts SET content = ? WHERE id = ?;';
 
+module.exports = {
+    getAllPostsQuery,
+    insertPostQuery,
+    findAllPostsQuery,
+    findPostsByIdQuery,
+    findPostsByUserQuery,
+    deletePostByIdQuery,
+    updatePostCompletedById,
+    updatePostTextById,
+};

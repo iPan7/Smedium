@@ -4,6 +4,8 @@ const {
     findPostsByIdQuery,
     findPostsByUserQuery,
     deletePostByIdQuery,
+    updatePostCompletedById,
+    updatePostTextById,
   } = require('./postQueries');
   const connection = require('../config/connection');
 
@@ -56,7 +58,24 @@ const {
       throw new Error(e);
     }
   };
-  
+
+  const updatePostCompletedByIdFromDb = async (postId) => {
+    try {
+      const [ result ] = await connection.query(updatePostCompletedById, postId);
+      return result[0];
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
+  const updatePostTextByIdFromDb = async (postId) => {
+    try {
+      const [ result ] = await connection.query(updatePostTextById, postId);
+      return result[0];
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
   
   module.exports = {
     findAllPostsFromDb,
@@ -64,5 +83,7 @@ const {
     findPostsByUserFromDb,
     insertPostToDb,
     deletePostByIdFromDb,
+    updatePostCompletedByIdFromDb,
+    updatePostTextByIdFromDb,
   };
   
