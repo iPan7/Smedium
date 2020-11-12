@@ -60,4 +60,17 @@ module.exports = {
       res.status(401).json(e);
     }
   },
+  updatePostTextById: async (req, res) => {
+    const { postId } = req.params;
+    const { post } = req.body;
+
+    try {
+      await connection.query(postQueries.updatePostTextById, [content, id]);
+      const updatedPost = await connection.query(postQueries.findPostById, id);
+      const updatedPost = post[0];
+      res.json(updatedPost);
+    } catch (e) {
+      res.status(401).json(e);
+    }
+  },
 }
