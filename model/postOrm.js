@@ -40,8 +40,8 @@ const {
   
   const insertPostToDb = async (post, userId) => {
     try {
-      const [ result ] = await connection.query(insertPostQuery, [fweet, userId ]);
-      return await findFweetByIdFromDb(result.insertId);
+      const [ result ] = await connection.query(insertPostQuery, [post, userId ]);
+      return await findPostsByIdFromDb(result.insertId);
     } catch (e) {
       throw new Error(e);
     }
@@ -50,7 +50,6 @@ const {
   
   const deletePostByIdFromDb = async (postId) => {
     try {
-      // We cant just delete first if we delete first, we can't get the fweet anymore
       const deletedPost = await findPostsByIdFromDb(postId);
       await connection.query(deletePostByIdQuery, postId);
       return deletedPost;

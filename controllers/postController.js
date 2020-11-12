@@ -1,9 +1,11 @@
 const {
-  insertPostQuery,
-  findAllPostsQuery,
-  findPostsByIdQuery,
-  findPostsByUserQuery,
-  deletePostByIdQuery,
+  findAllPostsFromDb,
+  findPostsByIdFromDb,
+  findPostsByUserFromDb,
+  insertPostToDb,
+  deletePostByIdFromDb,
+  updatePostCompletedByIdFromDb,
+  updatePostTextByIdFromDb,
 } = require('../model/postOrm');
 
 module.exports = {
