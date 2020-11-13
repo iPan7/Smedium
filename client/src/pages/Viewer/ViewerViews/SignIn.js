@@ -29,6 +29,15 @@ const TextFieldInput = ({ input, meta, label }) => {
   />;
 };
 
+const PasswordFieldInput = ({input, meta, label}) => {
+    // console.log('FIELD COMPONENT PROPS', props);
+    return <TextField
+        {...input}
+        type='password'
+        label={label}
+    />;
+};
+
 // What Redux form does for us
 // It will write the functions for updating form state
 // It will also write state to determine the current state of each field
@@ -73,7 +82,7 @@ const SignIn = (props) => {
         <Field
           name='password'
           label='Password'
-          component={TextFieldInput}
+          component={PasswordFieldInput}
         />
         <Button
           onClick={handleSubmit(handleSignIn)}
