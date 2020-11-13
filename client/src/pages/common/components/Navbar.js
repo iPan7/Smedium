@@ -47,33 +47,36 @@ export default function ButtonAppBar() {
 
     <AppBar style={{ backgroundColor: '#4f3558' }} position="static">
       <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="menu"
+          component={Link}
+          to='/'
+        >
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" className={classes.title}>
 
-          <Button
-            component={Link}
-            to='/'
-            color="inherit">
             Smedium
-    </Button>
+  
         </Typography>
 
-        
+
 
         {
           token ?
-          <React.Fragment>
-            <Button a href="/CreatePost" color="inherit">Create Post</Button>
-            <Button
-              color='inherit'
-              onClick={handleSignOut}
-            >
-              Log Out
+            <React.Fragment>
+              <Button a href="/CreatePost" color="inherit">Create Post</Button>
+              <Button
+                color='inherit'
+                onClick={handleSignOut}
+              >
+                Log Out
             </Button>
-          </React.Fragment>
-           :
+            </React.Fragment>
+            :
             <div>
               <Button
                 to='/signup'
