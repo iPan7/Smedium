@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Save from "./Save";
 import ButtonAppBar from "./ButtonAppBar";
-import '../style/CreatePost.css';
-import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import axios from "axios";
 
-import { withRouter } from 'react-router-dom';
 class CreatePost extends Component {
   state = {
     title: "",
@@ -13,11 +12,6 @@ class CreatePost extends Component {
     postSubmitted: false,
   };
 
-  componentDidMount() {
-    if (!this.props.viewer?.token) {
-      this.props.history.push('/');
-    }
-  }
   onChange = (input) => (e) => {
     this.setState({
       [input]: e.target.value,
@@ -29,6 +23,27 @@ class CreatePost extends Component {
       alert("All fields should be filed");
       e.preventDefault();
     } else {
+      const {
+        title,
+        content,
+        image,
+      } = this.state;
+
+      const accessString = localStorage.getItem('token');
+      axios.post('/post',
+        {
+          post: {
+            title,
+            content,
+            image,
+          },
+        },
+        {
+          headers: {
+            authorization: `${accessString}`,
+          }
+
+        }).then((data) => { console.log(data); });
       this.setState({
         postSubmitted: true,
       });
@@ -36,73 +51,72 @@ class CreatePost extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <>
         <ButtonAppBar />
         {!this.state.postSubmitted ? (
-          <div className="container">
-            <div className="jumbotron mt-3">
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="well well-sm">
-                    <form className="form-horizontal" method="post">
-                      <fieldset>
-                        <legend className="text-center header" id="adp">
-                          Add new post
+          <div className="container" >
+
+            <div className="row d-flex justify-content-center" >
+              <div id="div-col-md-6" className="col-md-6 ">
+                <div className="well well-sm">
+                  <form id="new-post-background" className="form-horizontal" method="post">
+                    <fieldset>
+                      <legend className="text-center header" id="adp">
+                        New Post
                         </legend>
-                        <div className="form-group">
-                          <span className="col-md-1 col-md-offset-2 text-center">
-                            <i className="fa fa-user bigicon"></i>
-                          </span>
-                          <input
-                            onChange={this.onChange("title")}
-                            name="title"
-                            type="text"
-                            placeholder="Post-Title"
-                            className="form-control"
-                          ></input>
-                        </div>
-                        <div className="form-group">
-                          <span className="col-md-1 col-md-offset-2 text-center">
-                            <i className="fa fa-user bigicon"></i>
-                          </span>
-                          <input
-                            onChange={this.onChange("image")}
-                            name="image"
-                            type="text"
-                            placeholder="image http://"
-                            className="form-control"
-                          ></input>
-                        </div>
-                        <div className="form-group">
-                          <span className="col-md-1 col-md-offset-2 text-center">
-                            <i className="fa fa-pencil-square-o bigicon"></i>
-                          </span>
-                          <textarea
-                            onChange={this.onChange("content")}
-                            name="content"
-                            type="text"
-                            placeholder="Your post"
-                            className="form-control"
-                            rows="7"
-                          ></textarea>
-                        </div>
-                        <div className="form-group">
-                          <button
-                            onClick={this.submitPost}
-                            type="button"
-                            className="btn btn-primary btn-lg"
-                          >
-                            Submit Post
-                          </button>
-                        </div>
-                      </fieldset>
-                    </form>
-                  </div>
+                      <div className="form-group">
+                        <span className="col-md-1 col-md-offset-2 text-center">
+                          <i id="icons" className="fa fa-user bigicon"></i>
+                        </span>
+                        <input
+                          onChange={this.onChange("title")}
+                          name="title"
+                          type="text"
+                          placeholder="Title"
+                          className="form-control"
+                        ></input>
+                      </div>
+                      <div className="form-group">
+                        <span className="col-md-1 col-md-offset-2 text-center">
+                          <i id="icons" className="fa fa-user bigicon"></i>
+                        </span>
+                        <input
+                          onChange={this.onChange("image")}
+                          name="image"
+                          type="text"
+                          placeholder="Image URL"
+                          className="form-control"
+                        ></input>
+                      </div>
+                      <div className="form-group">
+                        <span className="col-md-1 col-md-offset-2 text-center">
+                          <i id="icons" className="fa fa-pencil-square-o bigicon"></i>
+                        </span>
+                        <textarea
+                          onChange={this.onChange("content")}
+                          name="content"
+                          type="text"
+                          placeholder="Post content..."
+                          className="form-control"
+                          rows="7"
+                        ></textarea>
+                      </div>
+                      <div className="form-group">
+                        <Button
+                          onClick={this.submitPost}
+                          variant='contained'
+                          style={{ backgroundColor: '#328284', color: '#fff' }}
+                        >
+                          Submit Post
+                            </Button>
+                      </div>
+                    </fieldset>
+                  </form>
                 </div>
               </div>
             </div>
+
           </div>
         ) : (
             <Save
@@ -116,12 +130,4 @@ class CreatePost extends Component {
   }
 }
 
-
-function mapStateToProps({ viewer }) {
-  return { viewer };
-}
-
-
-
-
-export default connect(mapStateToProps)(CreatePost);
+export default CreatePost;
