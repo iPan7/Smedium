@@ -3,9 +3,8 @@ const {
   findAllPostsFromDb,
   findPostsByIdFromDb,
   findPostsByUserFromDb,
-  insertPostToDb,
-
-} = require('../model/postOrm');
+  insertPostToDb
+} = require("../model/postOrm");
 
 module.exports = {
   findPostsByLoggedInUserApi: async (req, res) => {
@@ -57,18 +56,6 @@ module.exports = {
     try {
       const createdPost = await insertPostToDb(post, req.user.id);
       res.json(createdPost);
-    } catch (e) {
-      res.status(401).json(e);
-    }
-  },
-  updatePostTextById: async (req, res) => {
-    const { postId } = req.params;
-    const { post } = req.body;
-    try {
-      await connection.query(postQueries.updatePostTextById, [content, id]);
-      const updatedPost = await connection.query(postQueries.findPostById, id);
-      const updatedPost = post[0];
-      res.json(updatedPost);
     } catch (e) {
       res.status(401).json(e);
     }

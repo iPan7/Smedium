@@ -23,11 +23,19 @@ import { setViewerToken } from '../ViewerReducer';
 
 const TextFieldInput = ({ input, meta, label }) => {
   // console.log('FIELD COMPONENT PROPS', props);
-  return <TextField {...input} label={label} />;
+  return <TextField
+    {...input}
+    label={label}
+  />;
 };
 
 const PasswordFieldInput = ({ input, meta, label }) => {
-  return <TextField {...input} type='password' label={label} />;
+  // console.log('FIELD COMPONENT PROPS', props);
+  return <TextField
+    {...input}
+    type='password'
+    label={label}
+  />;
 };
 
 // What Redux form does for us
@@ -54,7 +62,7 @@ const SignIn = (props) => {
     } catch (e) {
       throw new Error(e);
     }
-  };
+  }
 
   return (
     <div
@@ -63,10 +71,14 @@ const SignIn = (props) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-      }}
-    >
-      <form noValidate autoComplete='off'>
-        <Field name='username' label='Username' component={TextFieldInput} />
+
+      }}>
+      <form noValidate autoComplete="off">
+        <Field
+          name='username'
+          label='Username'
+          component={TextFieldInput}
+        />
         <Field
           name='password'
           label='Password'
@@ -74,11 +86,10 @@ const SignIn = (props) => {
         />
         <Button
           onClick={handleSubmit(handleSignIn)}
-          variant='contained'
-          style={{ backgroundColor: '#4f3558', color: '#fff' }}
-        >
+          variant="contained"
+          style={{ backgroundColor: '#4f3558', color: '#fff' }}>
           Login
-        </Button>
+      </Button>
       </form>
     </div>
   );
