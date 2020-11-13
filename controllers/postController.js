@@ -1,12 +1,10 @@
 const {
+  deletePostByIdFromDb,
   findAllPostsFromDb,
   findPostsByIdFromDb,
   findPostsByUserFromDb,
-  insertPostToDb,
-  deletePostByIdFromDb,
-  updatePostCompletedByIdFromDb,
-  updatePostTextByIdFromDb,
-} = require('../model/postOrm');
+  insertPostToDb
+} = require("../model/postOrm");
 
 module.exports = {
   findPostsByLoggedInUserApi: async (req, res) => {
@@ -18,7 +16,7 @@ module.exports = {
     }
   },
   findPostsByIdApi: async (req, res) => {
-    const { postId } = req.params;
+    const {postId} = req.params;
     try {
       const post = await findPostsByIdFromDb(postId);
       if (!post) {
@@ -38,7 +36,7 @@ module.exports = {
     }
   },
   deletePostByIdApi: async (req, res) => {
-    const { postId } = req.params;
+    const {postId} = req.params;
     try {
       const postToDelete = await findPostsByIdFromDb(postId);
       if (postToDelete.userId !== req.user.id) {
@@ -51,10 +49,10 @@ module.exports = {
     }
   },
   insertPostApi: async (req, res) => {
-  //  req.user // logged in user
-  //  req.body // coming from form
-  //  req.params // coming from wildcards declared in routes
-    const { post } = req.body;
+    //  req.user // logged in user
+    //  req.body // coming from form
+    //  req.params // coming from wildcards declared in routes
+    const {post} = req.body;
     try {
       const createdPost = await insertPostToDb(post, req.user.id);
       res.json(createdPost);
@@ -62,17 +60,4 @@ module.exports = {
       res.status(401).json(e);
     }
   },
-  updatePostTextById: async (req, res) => {
-    const { postId } = req.params;
-    const { post } = req.body;
-
-    try {
-      await connection.query(postQueries.updatePostTextById, [content, id]);
-      const updatedPost = await connection.query(postQueries.findPostById, id);
-      const updatedPost = post[0];
-      res.json(updatedPost);
-    } catch (e) {
-      res.status(401).json(e);
-    }
-  },
-}
+};
