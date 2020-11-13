@@ -1,6 +1,6 @@
 import React from "react";
-import Save from "react-to-pdf";
-import '../style/CreatePost.css';
+import Pdf from "react-to-pdf";
+import "../style/CreatePost.css";
 
 const ref = React.createRef();
 const Saveas = (props) => {
@@ -11,13 +11,13 @@ const Saveas = (props) => {
         <img src={props.image} alt={props.title}></img>
         <p>{props.content}</p>
       </div>
-      <Save targetRef={ref} filename="Post.Save">
-        {({ toSave }) => (
-          <button className="button" onClick={toSave}>
+      <Pdf targetRef={ref} filename="code-example.pdf">
+        {({ toPdf }) => (
+          <button className="button" onClick={toPdf}>
             Save your Post
           </button>
         )}
-      </Save>
+      </Pdf>
     </>
   );
 };

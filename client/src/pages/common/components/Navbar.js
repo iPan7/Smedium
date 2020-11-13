@@ -37,6 +37,12 @@ export default function ButtonAppBar() {
     history.push('/');
   };
 
+  // const createPostButton = () => {
+  //   localStorage.removeItem('token');
+  //   dispatch(setViewerToken(null));
+  //   history.push('/');
+  // };
+
   return (
 
     <AppBar style={{ backgroundColor: '#4f3558' }} position="static">
@@ -54,16 +60,20 @@ export default function ButtonAppBar() {
     </Button>
         </Typography>
 
-        <Button a href="/CreatePost" color="inherit">Create Post</Button>
+        
 
         {
           token ?
+          <React.Fragment>
+            <Button a href="/CreatePost" color="inherit">Create Post</Button>
             <Button
               color='inherit'
               onClick={handleSignOut}
             >
               Log Out
-        </Button> :
+            </Button>
+          </React.Fragment>
+           :
             <div>
               <Button
                 to='/signup'
