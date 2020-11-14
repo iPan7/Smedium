@@ -16,7 +16,7 @@ module.exports = {
     }
   },
   findPostsByIdApi: async (req, res) => {
-    const { postId } = req.params;
+    const {postId} = req.params;
     try {
       const post = await findPostsByIdFromDb(postId);
       if (!post) {
@@ -36,7 +36,7 @@ module.exports = {
     }
   },
   deletePostByIdApi: async (req, res) => {
-    const { postId } = req.params;
+    const {postId} = req.params;
     try {
       const postToDelete = await findPostsByIdFromDb(postId);
       if (postToDelete.userId !== req.user.id) {
@@ -52,7 +52,7 @@ module.exports = {
     //  req.user // logged in user
     //  req.body // coming from form
     //  req.params // coming from wildcards declared in routes
-    const { post } = req.body;
+    const {post} = req.body;
     try {
       const createdPost = await insertPostToDb(post, req.user.id);
       res.json(createdPost);

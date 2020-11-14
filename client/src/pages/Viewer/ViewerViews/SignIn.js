@@ -29,13 +29,13 @@ const TextFieldInput = ({ input, meta, label }) => {
   />;
 };
 
-const PasswordFieldInput = ({ input, meta, label }) => {
-  // console.log('FIELD COMPONENT PROPS', props);
-  return <TextField
-    {...input}
-    type='password'
-    label={label}
-  />;
+const PasswordFieldInput = ({input, meta, label}) => {
+    // console.log('FIELD COMPONENT PROPS', props);
+    return <TextField
+        {...input}
+        type='password'
+        label={label}
+    />;
 };
 
 // What Redux form does for us
