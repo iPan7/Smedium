@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { createLogger } from 'redux-logger';
+import axios from "axios";
 
 import App from './App';
 
@@ -22,6 +23,9 @@ const store = configureStore({
   reducer: rootReducer,
   middleware: [logger],
 });
+
+const accessString = localStorage.getItem('token');
+axios.defaults.headers.common['authorization'] = `${accessString}`;
 
 ReactDOM.render(
   <Provider store={store}>
