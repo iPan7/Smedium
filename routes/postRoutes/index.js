@@ -21,7 +21,6 @@ router.route('/')
     .get(findAllPostsApi)
     .post(insertPostApi);
 
-
 //  /api/posts/:postId
 router.route('/:postId')
     .get(findPostsByIdApi)
