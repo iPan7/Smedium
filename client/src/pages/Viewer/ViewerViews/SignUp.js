@@ -50,8 +50,9 @@ const PasswordFieldInput = ({input, meta, label}) => {
 // handleSubmit also preventsDefault for us right away
 // to the function that it's calling
 class SignUp extends Component {
-
+  
     handleSignUp = async (formValues) => {
+
         console.log(formValues);
         //{ username: 'Your enterereduseRName', password: 'your password' }
         try {
@@ -106,7 +107,7 @@ class SignUp extends Component {
 
 // const SignUp = (props) => {
 //   const { handleSubmit, history } = props;
-//
+
 //   console.log(props);
 //   const handleSignUp = async (formValues) => {
 //     console.log(formValues);
@@ -121,7 +122,7 @@ class SignUp extends Component {
 //       throw new Error(e);
 //     }
 //   }
-//
+
 //   return (
 //     <form noValidate autoComplete="off">
 //       <Field
