@@ -9,9 +9,6 @@ import axios from "axios";
 import Post from "./Post";
 
 const useStyles = makeStyles((theme) => ({
-    appBar: {
-        backgroundColor: "#fff"
-    },
     hero: {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1456324504439-367cee3b3c32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80')`,
         height: "500px",
@@ -36,34 +33,9 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 800,
         paddingBottom: theme.spacing(3)
     },
-    card: {
-        maxWidth: "100%",
-    },
-    media: {
-        height: 240
-    },
-    cardActions: {
-        display: "flex",
-        margin: "0 10px",
-        justifyContent: "space-between"
-    },
-    author: {
-        display: "flex"
-    },
-    paginationContainer: {
-        display: "flex",
-        justifyContent: "center"
-    },
-
     root: {
         flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
+    }
 }));
 
 // BODY OF MAIN PAGE

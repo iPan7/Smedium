@@ -47,9 +47,6 @@ export default function ButtonAppBar() {
 
     <AppBar style={{ backgroundColor: '#4f3558' }} position="static">
       <Toolbar>
-        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
         <Typography variant="h6" className={classes.title}>
 
           <Button
@@ -59,9 +56,6 @@ export default function ButtonAppBar() {
             Smedium
     </Button>
         </Typography>
-
-        
-
         {
           token ?
           <React.Fragment>
