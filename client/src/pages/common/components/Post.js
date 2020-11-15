@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -82,7 +83,7 @@ const Post = (props) => {
                         title={title}
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2" style={{ textAlign: 'center' }}>
                             {title}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
@@ -93,14 +94,20 @@ const Post = (props) => {
                 <CardActions className={classes.cardActions}>
                     <Box className={classes.author}>
                         <Box ml={6}>
-                            <Typography variant="subtitle2" component="p">
-                                {username}
+                            <Typography variant="subtitle2" component="p" >
+                                <p>Author: {username}</p>
                             </Typography>
-                            <Typography variant="subtitle2" color="textSecondary" component="p">
-                                {formattedDateTime}
+                            <Typography variant="subtitle2" color="textSecondary" component="p" style={{ fontStyle: 'italic' }}>
+                                <p> Date: {formattedDateTime}</p>
                             </Typography>
                         </Box>
                     </Box>
+                    <Button size="small" style={{ backgroundColor: '#4f3558', color: '#fff' }}>
+                        Delete
+                    </Button>
+                    <Button size="small" style={{ backgroundColor: '#4f3558', color: '#fff' }}>
+                        Update
+                    </Button>
                 </CardActions>
             </Card>
         </Grid>
