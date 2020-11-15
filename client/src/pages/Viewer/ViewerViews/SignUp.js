@@ -53,6 +53,8 @@ class SignUp extends Component {
   
     handleSignUp = async (formValues) => {
 
+
+    handleSignUp = async (formValues) => {
         console.log(formValues);
         //{ username: 'Your enterereduseRName', password: 'your password' }
         try {
@@ -161,4 +163,5 @@ function mapStateToProps(state) {
 export const WrappedSignUp = compose(
     reduxForm({form: 'signUpForm'}),
     connect(mapStateToProps, {setViewerToken})
+
 )(SignUp);
