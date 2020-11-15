@@ -21,26 +21,3 @@ CREATE TABLE posts (
 );
 
 
-
-
-
-
-
-
--- CREATE TABLE `smedium_db`.`users` (
---   `id` INT NOT NULL AUTO_INCREMENT,
---   `username` VARCHAR(45) NOT NULL,
---   `password` VARCHAR(100) NOT NULL,
---   PRIMARY KEY (`id`));
-
-
--- CREATE TABLE `smedium_db`.`posts` (
---   `id` INT NOT NULL AUTO_INCREMENT,
---   `title` VARCHAR(200) NULL,
---   `content` MEDIUMTEXT NOT NULL,
---   `image` VARCHAR(400) NULL,
---   `userId` INT NULL,
---   `datetime_created` DATETIME NULL,
---   PRIMARY KEY (`id`));
-
-
