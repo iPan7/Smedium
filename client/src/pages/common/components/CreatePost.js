@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
+
 class CreatePost extends Component {
   state = {
     title: "",

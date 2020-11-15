@@ -8,7 +8,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import '../style/index.css';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Post = (props) => {
-    const {title, image, content, datetime_created, username} = props.post;
+    const { title, image, content, datetime_created, username } = props.post;
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     const formattedDateTime = new Date(datetime_created).toLocaleDateString("en-US", options);
     const classes = useStyles();
@@ -79,7 +79,7 @@ const Post = (props) => {
                     <CardMedia
                         className={classes.media}
                         image={image}
-                        title="Contemplative Reptile"
+                        title={title}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
