@@ -18,10 +18,8 @@ const useStyles = makeStyles({
   },
 });
 
-
-const Saveas = (props) => {
+const PostCard = (props) => {
   const classes = useStyles();
-
 
   return (
 
@@ -33,8 +31,6 @@ const Saveas = (props) => {
         direction="column"
         alignItems="center"
         justify="center"
-      // style={{ minHeight: '100vh' }}
-
 
       >
         <Grid item xs={3}>
@@ -68,15 +64,4 @@ const Saveas = (props) => {
     </div>
   );
 };
-export default Saveas;
-
-
-
-{/* <>
-<div className="Post" href={MainPage}>
-  <h1>{props.title}</h1>
-  <img src={props.image} alt={props.title}></img>
-  <p>{props.content}</p>
-</div>
-
-</> */}
+export default PostCard;

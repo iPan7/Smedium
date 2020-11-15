@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Save from "./Save";
+import PostCard from "./PostCard";
 import ButtonAppBar from "./ButtonAppBar";
 import '../style/CreatePost.css';
 import { connect } from 'react-redux';
@@ -130,7 +130,7 @@ class CreatePost extends Component {
             </div>
           </div>
         ) : (
-            <Save
+            <PostCard
               title={this.state.title}
               content={this.state.content}
               image={this.state.image}
