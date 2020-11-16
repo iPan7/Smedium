@@ -46,7 +46,7 @@ const Post = (props) => {
                         <CardMedia
                             style={{height: cardHeight}}
                             image={image}
-                            title="Contemplative Reptile"
+                            title={title}
                         />
                         <CardContent>
                             <Typography gutterBottom variant="h5" component="h2">

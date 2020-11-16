@@ -20,7 +20,7 @@ function SinglePost() {
     useEffect(() => {
         API.getSinglePost(postId)
             .then(({data: post}) => setPost(post));
-    }, []);
+    }, [postId]);
 
     if (post === null) {
         return null;
