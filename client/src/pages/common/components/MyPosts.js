@@ -26,6 +26,10 @@ function MainPage() {
     }, []);
 
     function getMappedPosts(posts) {
+        if (posts.length === 0) {
+            return <div>You do not currently have any posts</div>;
+        }
+
         return posts.map(post => <Post post={post}/>);
     }
 

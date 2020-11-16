@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => {
         },
         deletePost: {
             cursor: 'pointer'
+        },
+        postDeletedMessage: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: '25px'
         }
     };
 });
@@ -51,7 +57,11 @@ const Post = (props) => {
     }
 
     if(deleted) {
-        return <>Post deleted</>;
+        return (
+            <Grid item xs={xsColumns} sm={smColumns} md={mdColumns} className={classes.postDeletedMessage}>
+                Post Deleted
+            </Grid>
+        );
     }
 
     return (
