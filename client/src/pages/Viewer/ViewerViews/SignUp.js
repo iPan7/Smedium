@@ -50,6 +50,9 @@ const PasswordFieldInput = ({input, meta, label}) => {
 // handleSubmit also preventsDefault for us right away
 // to the function that it's calling
 class SignUp extends Component {
+  
+    handleSignUp = async (formValues) => {
+
 
     handleSignUp = async (formValues) => {
         console.log(formValues);
