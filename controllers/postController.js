@@ -55,6 +55,7 @@ module.exports = {
     const {post} = req.body;
     try {
       const createdPost = await insertPostToDb(post, req.user.id);
+      console.log(post);
       res.json(createdPost);
     } catch (e) {
       res.status(401).json(e);
