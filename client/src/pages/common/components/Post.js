@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => {
 const Post = (props) => {
     const [deleted, setDeleted] = useState(false);
     const {post, columnSpan, mediaHeight} = props;
-    const {id, title, image, content, datetime_created, username} = post;
+    const {id, title, image, content, datetime_created, username, userId, idOfCurrentUser} = post;
     const options = {year: 'numeric', month: 'short', day: 'numeric'};
     const formattedDateTime = new Date(datetime_created).toLocaleDateString("en-US", options);
     const classes = useStyles();
@@ -52,8 +52,11 @@ const Post = (props) => {
     const cardHeight = mediaHeight || 240;
 
     function handleDelete() {
-        API.deletePost(id)
-            .then(() => setDeleted(true));
+        const yesToDeletePost = window.confirm('Are you sure you want to delete this post?');
+        if(yesToDeletePost) {
+            API.deletePost(id)
+                .then(() => setDeleted(true));
+        }
     }
 
     if(deleted) {
@@ -63,6 +66,8 @@ const Post = (props) => {
             </Grid>
         );
     }
+
+    const postBelongsToCurrentUser = userId === idOfCurrentUser;
 
     return (
         <Grid item xs={xsColumns} sm={smColumns} md={mdColumns}>
@@ -95,11 +100,11 @@ const Post = (props) => {
                             </Typography>
                         </Box>
                     </Box>
-                    <Box>
+                    {postBelongsToCurrentUser && (<Box>
                         <IconButton aria-label="delete" onClick={handleDelete}>
                             <Delete className={classes.deletePost}/>
                         </IconButton>
-                    </Box>
+                    </Box>)}
                 </CardActions>
             </Card>
         </Grid>
