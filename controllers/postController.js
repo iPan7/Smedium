@@ -12,6 +12,7 @@ module.exports = {
       const userPosts = await findPostsByUserFromDb(req.user.id);
       return res.json(userPosts);
     } catch (e) {
+      console.log('testing', e);
       res.status(401).json(e);
     }
   },
@@ -57,7 +58,6 @@ module.exports = {
       const createdPost = await insertPostToDb(post, req.user.id);
       res.json(createdPost);
     } catch (e) {
-      console.log('testing', e);
       res.status(401).json(e);
     }
   },

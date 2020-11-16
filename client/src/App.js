@@ -8,6 +8,7 @@ import {
   WrappedSignUp,
   WrappedSignIn,
 } from './pages/Viewer';
+import MyPosts from "./pages/common/components/MyPosts";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Route path='/signin' component={WrappedSignIn} />
       <Route exact path='/createpost' component={CreatePost} />
       <Route exact path='/posts/:postId' component={SinglePost} />
-      <Route exact path='/posts/mine' component={SinglePost} />
+      <Route exact path='/posts/mine' component={MyPosts} />
       <Route exact path="/" component={MainPage} />
     </Router>
   );

@@ -4,7 +4,7 @@ const insertPostQuery = 'INSERT INTO posts (title, content, image, userId) VALUE
 const findAllPostsQuery = `SELECT 
                                 p.*, u.username
                             FROM
-                                smedium_db.posts p
+                                posts p
                                     INNER JOIN
                                 users u ON p.userId = u.id;`;
 const findPostByIdQuery = `SELECT 
@@ -15,7 +15,7 @@ const findPostByIdQuery = `SELECT
                                 users u ON p.userId = u.id
                             WHERE
                                 p.id = ?;`;
-const findPostByUserQuery = `SELECT 
+const findPostsByUserQuery = `SELECT 
                                 p.*, u.username
                             FROM
                                 posts p
@@ -30,6 +30,6 @@ module.exports = {
     insertPostQuery,
     findAllPostsQuery,
     findPostByIdQuery,
-    findPostByUserQuery,
+    findPostsByUserQuery,
     deletePostByIdQuery
 };
