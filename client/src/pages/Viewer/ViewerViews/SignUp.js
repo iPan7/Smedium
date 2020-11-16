@@ -62,7 +62,8 @@ class SignUp extends Component {
             this.props.history.push('/');
             // sessionStorage.setItem('token', res.data);
         } catch (e) {
-            throw new Error(e);
+            const $taken = document.getElementById("taken");
+            $taken.append("This username has already been taken.")
         }
     }
 
@@ -97,16 +98,18 @@ class SignUp extends Component {
                         style={{backgroundColor: '#4f3558', color: '#fff'}}>
                         Register
                     </Button>
+                    <p style={{color: "red"}} id="taken"></p>
                 </form>
             </div>
         );
-    }
+    };
 }
+
 
 
 // const SignUp = (props) => {
 //   const { handleSubmit, history } = props;
-//
+
 //   console.log(props);
 //   const handleSignUp = async (formValues) => {
 //     console.log(formValues);
@@ -121,7 +124,7 @@ class SignUp extends Component {
 //       throw new Error(e);
 //     }
 //   }
-//
+
 //   return (
 //     <form noValidate autoComplete="off">
 //       <Field
@@ -143,6 +146,7 @@ class SignUp extends Component {
 //     </form>
 //   );
 // };
+
 function mapStateToProps(state) {
     return {superman: state.viewer};
 };
@@ -160,4 +164,5 @@ function mapStateToProps(state) {
 export const WrappedSignUp = compose(
     reduxForm({form: 'signUpForm'}),
     connect(mapStateToProps, {setViewerToken})
+
 )(SignUp);
