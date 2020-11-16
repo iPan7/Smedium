@@ -11,6 +11,9 @@ export default {
         }
     );
   },
+  deletePost: function (postId) {
+    return axios.delete(`/post/${postId}`);
+  },
   doSignIn(formValues) {
     return axios.post('/auth/signin', formValues);
   },

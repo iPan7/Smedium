@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +10,9 @@ import CardContent from '@material-ui/core/CardContent';
 import '../style/index.css';
 import {makeStyles} from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
+import Delete from '@material-ui/icons/Delete';
+import IconButton from "@material-ui/core/IconButton";
+import API from "../../../utils/API";
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -22,11 +25,15 @@ const useStyles = makeStyles((theme) => {
         },
         author: {
             display: "flex"
+        },
+        deletePost: {
+            cursor: 'pointer'
         }
     };
 });
 
 const Post = (props) => {
+    const [deleted, setDeleted] = useState(false);
     const {post, columnSpan, mediaHeight} = props;
     const {id, title, image, content, datetime_created, username} = post;
     const options = {year: 'numeric', month: 'short', day: 'numeric'};
@@ -37,6 +44,15 @@ const Post = (props) => {
     const smColumns = columnSpan || 6;
     const mdColumns = columnSpan || 4;
     const cardHeight = mediaHeight || 240;
+
+    function handleDelete() {
+        API.deletePost(id)
+            .then(() => setDeleted(true));
+    }
+
+    if(deleted) {
+        return <>Post deleted</>;
+    }
 
     return (
         <Grid item xs={xsColumns} sm={smColumns} md={mdColumns}>
@@ -68,6 +84,11 @@ const Post = (props) => {
                                 {formattedDateTime}
                             </Typography>
                         </Box>
+                    </Box>
+                    <Box>
+                        <IconButton aria-label="delete" onClick={handleDelete}>
+                            <Delete className={classes.deletePost}/>
+                        </IconButton>
                     </Box>
                 </CardActions>
             </Card>

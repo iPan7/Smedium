@@ -44,7 +44,7 @@ module.exports = {
         return res.status(401).send('You are unauthorized to delete this post');
       }
       const deletedPost = await deletePostByIdFromDb(postId);
-      return res.json(deletedpost);
+      return res.json(deletedPost);
     } catch (e) {
       res.status(401).json(e);
     }
