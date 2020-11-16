@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import '../style/index.css';
 import axios from "axios";
 import Post from "./Post";
+import API from '../../../utils/API';
 
 const useStyles = makeStyles((theme) => ({
     hero: {
@@ -44,8 +45,7 @@ function MainPage() {
     const classes = useStyles();
 
     useEffect(() => {
-        axios.get('/post')
-            .then(({data}) => {
+        API.getAllPosts().then(({data}) => {
                 console.log('posts', data);
                 setPosts(data);
             });

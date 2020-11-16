@@ -1,10 +1,20 @@
 import axios from "axios";
 
 export default {
-  search: function() {
-    return axios.get('https://dog.ceo/api/breeds/image/random');
+  getAllPosts: function () {
+    return axios.get('/post')
   },
-  searchByBreed: function(breed) {
-    return axios.get(`https://dog.ceo/api/breed/${breed}/images`);
+  createPost: function (post) {
+    return axios.post('/post',
+        {
+          post
+        }
+    );
+  },
+  doSignIn(formValues) {
+    return axios.post('/auth/signin', formValues);
+  },
+  doSignUp(formValues) {
+    return axios.post('/auth/signup', formValues);
   }
 };
