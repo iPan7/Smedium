@@ -4,7 +4,7 @@ const insertPostQuery = 'INSERT INTO posts (title, content, image, userId) VALUE
 const findAllPostsQuery = `SELECT 
                                 p.*, u.username
                             FROM
-                                smedium_db.posts p
+                                posts p
                                     INNER JOIN
                                 users u ON p.userId = u.id;`;
 const findPostByIdQuery = `SELECT 

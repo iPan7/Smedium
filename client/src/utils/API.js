@@ -19,5 +19,8 @@ export default {
   },
   getSinglePost(postId) {
     return axios.get(`/post/${postId}`);
+  },
+  getMyPosts() {
+    return axios.get(`/post/userposts`);
   }
 };
