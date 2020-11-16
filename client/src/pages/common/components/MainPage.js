@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import '../style/index.css';
-import axios from "axios";
 import Post from "./Post";
 import API from '../../../utils/API';
 
@@ -45,10 +44,7 @@ function MainPage() {
     const classes = useStyles();
 
     useEffect(() => {
-        API.getAllPosts().then(({data}) => {
-                console.log('posts', data);
-                setPosts(data);
-            });
+        API.getAllPosts().then(({data}) => setPosts(data));
     }, []);
 
     function getMappedPosts(posts) {

@@ -1,7 +1,7 @@
 const {
   deletePostByIdFromDb,
   findAllPostsFromDb,
-  findPostsByIdFromDb,
+  findPostByIdFromDb,
   findPostsByUserFromDb,
   insertPostToDb
 } = require("../model/postOrm");
@@ -15,10 +15,10 @@ module.exports = {
       res.status(401).json(e);
     }
   },
-  findPostsByIdApi: async (req, res) => {
+  findPostByIdApi: async (req, res) => {
     const {postId} = req.params;
     try {
-      const post = await findPostsByIdFromDb(postId);
+      const post = await findPostByIdFromDb(postId);
       if (!post) {
         return res.status(404).send('No post found with that id');
       }
@@ -38,7 +38,7 @@ module.exports = {
   deletePostByIdApi: async (req, res) => {
     const {postId} = req.params;
     try {
-      const postToDelete = await findPostsByIdFromDb(postId);
+      const postToDelete = await findPostByIdFromDb(postId);
       if (postToDelete.userId !== req.user.id) {
         return res.status(401).send('You are unauthorized to delete this post');
       }
@@ -57,6 +57,7 @@ module.exports = {
       const createdPost = await insertPostToDb(post, req.user.id);
       res.json(createdPost);
     } catch (e) {
+      console.log('testing', e);
       res.status(401).json(e);
     }
   },

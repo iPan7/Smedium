@@ -1,7 +1,7 @@
 const {
   insertPostQuery,
   findAllPostsQuery,
-  findPostsByIdQuery,
+  findPostByIdQuery,
   findPostsByUserQuery,
   deletePostByIdQuery,
 } = require('./postQueries');
@@ -16,9 +16,9 @@ const findAllPostsFromDb = async () => {
   }
 };
 
-const findPostsByIdFromDb = async (postId) => {
+const findPostByIdFromDb = async (postId) => {
   try {
-    const [ result ] = await connection.query(findPostsByIdQuery, postId);
+    const [ result ] = await connection.query(findPostByIdQuery, postId);
     return result[0];
   } catch (e) {
     throw new Error(e);
@@ -37,7 +37,7 @@ const findPostsByUserFromDb = async (userId) => {
 const insertPostToDb = async (post, userId) => {
   try {
     const [ result ] = await connection.query(insertPostQuery, [post.title, post.content, post.image, userId]);
-    return await findPostsByIdFromDb(result.insertId);
+    return await findPostByIdFromDb(result.insertId);
   } catch (e) {
     throw new Error(e);
   }
@@ -46,7 +46,7 @@ const insertPostToDb = async (post, userId) => {
 const deletePostByIdFromDb = async (postId) => {
   try {
     // We cant just delete first if we delete first, we can't get the fweet anymore
-    const deletedPost = await findPostsByIdFromDb(postId);
+    const deletedPost = await findPostByIdFromDb(postId);
     await connection.query(deletePostByIdQuery, postId);
     return deletedPost;
   } catch (e) {
@@ -56,7 +56,7 @@ const deletePostByIdFromDb = async (postId) => {
 
 module.exports = {
   findAllPostsFromDb,
-  findPostsByIdFromDb,
+  findPostByIdFromDb,
   findPostsByUserFromDb,
   insertPostToDb,
   deletePostByIdFromDb,

@@ -6,16 +6,30 @@ const findAllPostsQuery = `SELECT
                             FROM
                                 smedium_db.posts p
                                     INNER JOIN
-                                users u ON p.userId = u.id`;
-const findPostsByIdQuery = 'SELECT * FROM posts WHERE id = ?;';
-const findPostsByUserQuery = 'SELECT * FROM posts WHERE userId = ?;';
+                                users u ON p.userId = u.id;`;
+const findPostByIdQuery = `SELECT 
+                                p.*, u.username
+                            FROM
+                                posts p
+                                    INNER JOIN
+                                users u ON p.userId = u.id
+                            WHERE
+                                p.id = ?;`;
+const findPostByUserQuery = `SELECT 
+                                p.*, u.username
+                            FROM
+                                posts p
+                                    INNER JOIN
+                                users u ON p.userId = u.id
+                            WHERE
+                                p.userId = ?;`
 const deletePostByIdQuery = 'DELETE FROM posts WHERE id = ?;';
 
 module.exports = {
     getAllPostsQuery,
     insertPostQuery,
     findAllPostsQuery,
-    findPostsByIdQuery,
-    findPostsByUserQuery,
+    findPostByIdQuery,
+    findPostByUserQuery,
     deletePostByIdQuery
 };

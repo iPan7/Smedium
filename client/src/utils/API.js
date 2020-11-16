@@ -16,5 +16,8 @@ export default {
   },
   doSignUp(formValues) {
     return axios.post('/auth/signup', formValues);
+  },
+  getSinglePost(postId) {
+    return axios.get(`/post/${postId}`);
   }
 };
