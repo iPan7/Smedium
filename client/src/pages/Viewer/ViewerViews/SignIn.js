@@ -61,7 +61,7 @@ const SignIn = (props) => {
       history.push('/');
     } catch (e) {
       const $error = document.getElementById("error");
-      $error.append("Your username and/or password are incorrect.")
+      $error.innerHTML="Your username and/or password are incorrect.";
     }
   }
 
