@@ -8,88 +8,56 @@ import CardActions from '@material-ui/core/CardActions';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import '../style/index.css';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
+import {Link} from "react-router-dom";
 
-const useStyles = makeStyles((theme) => ({
-    appBar: {
-        backgroundColor: "#fff"
-    },
-    hero: {
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1456324504439-367cee3b3c32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80')`,
-        height: "500px",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "#fff",
-        fontSize: "4rem",
-        [theme.breakpoints.down("sm")]: {
-            height: 300,
-            fontSize: "3em"
+const useStyles = makeStyles((theme) => {
+    return {
+        card: {
+            maxWidth: "100%",
+        },
+        cardActions: {
+            display: "flex",
+            justifyContent: "space-between"
+        },
+        author: {
+            display: "flex"
         }
-    },
-    blogsContainer: {
-        paddingTop: theme.spacing(3)
-    },
-    blogTitle: {
-        fontWeight: 800,
-        paddingBottom: theme.spacing(3)
-    },
-    card: {
-        maxWidth: "100%",
-    },
-    media: {
-        height: 240
-    },
-    cardActions: {
-        display: "flex",
-        justifyContent: "space-between"
-    },
-    author: {
-        display: "flex"
-    },
-    paginationContainer: {
-        display: "flex",
-        justifyContent: "center"
-    },
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
+    };
+});
 
 const Post = (props) => {
-    const { title, image, content, datetime_created, username } = props.post;
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const {post, columnSpan, mediaHeight} = props;
+    const {id, title, image, content, datetime_created, username} = post;
+    const options = {year: 'numeric', month: 'short', day: 'numeric'};
     const formattedDateTime = new Date(datetime_created).toLocaleDateString("en-US", options);
     const classes = useStyles();
 
+    const xsColumns = columnSpan || 12;
+    const smColumns = columnSpan || 6;
+    const mdColumns = columnSpan || 4;
+    const cardHeight = mediaHeight || 240;
+
     return (
-        <Grid item xs={12} sm={6} md={4}>
+        <Grid item xs={xsColumns} sm={smColumns} md={mdColumns}>
             <Card className={classes.card}>
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={image}
-                        title={title}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {title}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {content}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
+                <Link to={`/posts/${id}`}>
+                    <CardActionArea>
+                        <CardMedia
+                            style={{height: cardHeight}}
+                            image={image}
+                            title={title}
+                        />
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="h2">
+                                {title}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {content}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Link>
                 <CardActions className={classes.cardActions}>
                     <Box className={classes.author}>
                         <Box ml={6}>

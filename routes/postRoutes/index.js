@@ -4,7 +4,7 @@ const {
   findAllPostsApi,
   deletePostByIdApi,
   insertPostApi,
-  findPostsByIdApi,
+  findPostByIdApi,
   findPostsByLoggedInUserApi,
 } = require('../../controllers/postController');
 
@@ -21,9 +21,9 @@ router.route('/')
     .get(findAllPostsApi)
     .post(insertPostApi);
 
-//  /api/posts/:postId
+// /api/posts/:postId
 router.route('/:postId')
-    .get(findPostsByIdApi)
+    .get(findPostByIdApi)
     .delete(deletePostByIdApi);
 
 module.exports = router;

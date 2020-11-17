@@ -11,13 +11,6 @@ const Saveas = (props) => {
         <img src={props.image} alt={props.title}></img>
         <p>{props.content}</p>
       </div>
-      <Pdf targetRef={ref} filename="code-example.pdf">
-        {({ toPdf }) => (
-          <button className="button" onClick={toPdf}>
-            Save your Post
-          </button>
-        )}
-      </Pdf>
     </>
   );
 };
