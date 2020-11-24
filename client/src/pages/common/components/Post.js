@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -10,6 +10,9 @@ import CardContent from '@material-ui/core/CardContent';
 import '../style/index.css';
 import {makeStyles} from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
+import Delete from '@material-ui/icons/Delete';
+import IconButton from "@material-ui/core/IconButton";
+import API from "../../../utils/API";
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -22,13 +25,23 @@ const useStyles = makeStyles((theme) => {
         },
         author: {
             display: "flex"
+        },
+        deletePost: {
+            cursor: 'pointer'
+        },
+        postDeletedMessage: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            fontSize: '25px'
         }
     };
 });
 
 const Post = (props) => {
+    const [deleted, setDeleted] = useState(false);
     const {post, columnSpan, mediaHeight} = props;
-    const {id, title, image, content, datetime_created, username} = post;
+    const {id, title, image, content, datetime_created, username, userId, idOfCurrentUser} = post;
     const options = {year: 'numeric', month: 'short', day: 'numeric'};
     const formattedDateTime = new Date(datetime_created).toLocaleDateString("en-US", options);
     const classes = useStyles();
@@ -37,6 +50,24 @@ const Post = (props) => {
     const smColumns = columnSpan || 6;
     const mdColumns = columnSpan || 4;
     const cardHeight = mediaHeight || 240;
+
+    function handleDelete() {
+        const yesToDeletePost = window.confirm('Are you sure you want to delete this post?');
+        if(yesToDeletePost) {
+            API.deletePost(id)
+                .then(() => setDeleted(true));
+        }
+    }
+
+    if(deleted) {
+        return (
+            <Grid item xs={xsColumns} sm={smColumns} md={mdColumns} className={classes.postDeletedMessage}>
+                Post Deleted
+            </Grid>
+        );
+    }
+
+    const postBelongsToCurrentUser = userId === idOfCurrentUser;
 
     return (
         <Grid item xs={xsColumns} sm={smColumns} md={mdColumns}>
@@ -69,6 +100,11 @@ const Post = (props) => {
                             </Typography>
                         </Box>
                     </Box>
+                    {postBelongsToCurrentUser && (<Box>
+                        <IconButton aria-label="delete" onClick={handleDelete}>
+                            <Delete className={classes.deletePost}/>
+                        </IconButton>
+                    </Box>)}
                 </CardActions>
             </Card>
         </Grid>

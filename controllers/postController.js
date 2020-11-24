@@ -9,10 +9,14 @@ const {
 module.exports = {
   findPostsByLoggedInUserApi: async (req, res) => {
     try {
-      const userPosts = await findPostsByUserFromDb(req.user.id);
+      const idOfCurrentUser = req.user.id;
+      let userPosts = await findPostsByUserFromDb(idOfCurrentUser);
+      userPosts = userPosts.map(post => {
+        post.idOfCurrentUser = idOfCurrentUser;
+        return post;
+      });
       return res.json(userPosts);
     } catch (e) {
-      console.log('testing', e);
       res.status(401).json(e);
     }
   },
@@ -23,6 +27,7 @@ module.exports = {
       if (!post) {
         return res.status(404).send('No post found with that id');
       }
+      post.idOfCurrentUser = req.user.id;
       return res.json(post);
     } catch (e) {
       res.status(401).json(e);
@@ -30,7 +35,11 @@ module.exports = {
   },
   findAllPostsApi: async (req, res) => {
     try {
-      const posts = await findAllPostsFromDb();
+      let posts = await findAllPostsFromDb();
+      posts = posts.map(post => {
+        post.idOfCurrentUser = req.user.id;
+        return post;
+      });
       return res.json(posts);
     } catch (e) {
       res.status(401).json(e);
@@ -44,7 +53,7 @@ module.exports = {
         return res.status(401).send('You are unauthorized to delete this post');
       }
       const deletedPost = await deletePostByIdFromDb(postId);
-      return res.json(deletedpost);
+      return res.json(deletedPost);
     } catch (e) {
       res.status(401).json(e);
     }
@@ -56,8 +65,10 @@ module.exports = {
     const {post} = req.body;
     try {
       const createdPost = await insertPostToDb(post, req.user.id);
+      createdPost.idOfCurrentUser = req.user.id;
       res.json(createdPost);
     } catch (e) {
+      console.log(e);
       res.status(401).json(e);
     }
   },

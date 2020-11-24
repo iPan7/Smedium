@@ -54,16 +54,15 @@ class SignUp extends Component {
     handleSignUp = async (formValues) => {
         console.log(formValues);
         //{ username: 'Your enterereduseRName', password: 'your password' }
+        const res = await API.doSignUp(formValues);
         try {
-            const res = await API.doSignUp(formValues);
             console.log('I AM THE SIGNUP USERS TOKEN', res.data);
             localStorage.setItem('token', res.data);
             this.props.setViewerToken(res.data);
             this.props.history.push('/');
             // sessionStorage.setItem('token', res.data);
         } catch (e) {
-            const $taken = document.getElementById("taken");
-            $taken.innerHTML="This username has already been taken.";
+            throw new Error(e);
         }
     };
 
@@ -98,7 +97,6 @@ class SignUp extends Component {
                         style={{backgroundColor: '#4f3558', color: '#fff'}}>
                         Register
                     </Button>
-                    <p style={{color: "red"}} id="taken"></p>
                 </form>
             </div>
         );

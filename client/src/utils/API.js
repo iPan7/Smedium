@@ -8,8 +8,16 @@ export default {
     return axios.post('/post',
         {
           post
+        },
+        {
+          headers: {
+            authorization:localStorage.getItem('token')
+          }
         }
     );
+  },
+  deletePost: function (postId) {
+    return axios.delete(`/post/${postId}`);
   },
   doSignIn(formValues) {
     return axios.post('/auth/signin', formValues);
