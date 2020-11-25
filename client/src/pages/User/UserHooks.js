@@ -13,7 +13,7 @@ export const useFetchUsers = () => {
 
   const { users } = useSelector(state => state.user);
   useEffect(() => {
-    axios.get('/api/users', { headers: { authorization: localStorage.getItem('token') }})
+    axios.get('/api/users')
       .then(res => {
         dispatch(getUsers(res.data));
       })

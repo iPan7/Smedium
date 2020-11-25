@@ -1,10 +1,11 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+// import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
 import { setViewerToken } from '../ViewerReducer';
+import API from "../../../utils/API";
 // The Field components job is to render out input html
 // and pass down functions for updating the state
 // as well as check to see if the values being passed are valid
@@ -29,13 +30,13 @@ const TextFieldInput = ({ input, meta, label }) => {
   />;
 };
 
-const PasswordFieldInput = ({input, meta, label}) => {
-    // console.log('FIELD COMPONENT PROPS', props);
-    return <TextField
-        {...input}
-        type='password'
-        label={label}
-    />;
+const PasswordFieldInput = ({ input, meta, label }) => {
+  // console.log('FIELD COMPONENT PROPS', props);
+  return <TextField
+    {...input}
+    type='password'
+    label={label}
+  />;
 };
 
 // What Redux form does for us
@@ -52,17 +53,15 @@ const SignIn = (props) => {
 
   console.log(props);
   const handleSignIn = async (formValues, dispatch) => {
-    console.log(formValues);
-    //{ username: 'Your enterereduseRName', password: 'your password' }
     try {
-      const res = await axios.post('/auth/signin', formValues);
+      const res = await API.doSignIn(formValues);
       localStorage.setItem('token', res.data);
       dispatch(setViewerToken(res.data));
       history.push('/');
     } catch (e) {
-      throw new Error(e);
+
     }
-  }
+  };
 
   return (
     <div

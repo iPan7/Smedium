@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import {reduxForm, Field} from 'redux-form';
+import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+// import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
-import {connect} from 'react-redux';
-import {compose} from 'redux';
-import {setViewerToken} from '../ViewerReducer';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { setViewerToken } from '../ViewerReducer';
+import API from "../../../utils/API";
 // The Field components job is to render out input html
 // and pass down functions for updating the state
 // as well as check to see if the values being passed are valid
@@ -23,15 +24,15 @@ import {setViewerToken} from '../ViewerReducer';
 //   />;
 // };
 
-const TextFieldInput = ({input, meta, label}) => {
+const TextFieldInput = ({ input, meta, label }) => {
     // console.log('FIELD COMPONENT PROPS', props);
     return <TextField
         {...input}
-z        label={label}
+        z label={label}
     />;
 };
 
-const PasswordFieldInput = ({input, meta, label}) => {
+const PasswordFieldInput = ({ input, meta, label }) => {
     // console.log('FIELD COMPONENT PROPS', props);
     return <TextField
         {...input}
@@ -50,12 +51,11 @@ const PasswordFieldInput = ({input, meta, label}) => {
 // handleSubmit also preventsDefault for us right away
 // to the function that it's calling
 class SignUp extends Component {
-
     handleSignUp = async (formValues) => {
         console.log(formValues);
         //{ username: 'Your enterereduseRName', password: 'your password' }
+        const res = await API.doSignUp(formValues);
         try {
-            const res = await axios.post('/auth/signup', formValues);
             console.log('I AM THE SIGNUP USERS TOKEN', res.data);
             localStorage.setItem('token', res.data);
             this.props.setViewerToken(res.data);
@@ -63,12 +63,13 @@ class SignUp extends Component {
             // sessionStorage.setItem('token', res.data);
         } catch (e) {
             throw new Error(e);
+
         }
-    }
+    };
 
     render() {
         console.log(this.props);
-        const {handleSubmit} = this.props;
+        const { handleSubmit } = this.props;
         return (
             <div
 
@@ -94,7 +95,7 @@ class SignUp extends Component {
                     <Button
                         onClick={handleSubmit(this.handleSignUp)}
                         variant="contained"
-                        style={{backgroundColor: '#4f3558', color: '#fff'}}>
+                        style={{ backgroundColor: '#4f3558', color: '#fff' }}>
                         Register
                     </Button>
                 </form>
@@ -103,61 +104,11 @@ class SignUp extends Component {
     }
 }
 
-
-// const SignUp = (props) => {
-//   const { handleSubmit, history } = props;
-//
-//   console.log(props);
-//   const handleSignUp = async (formValues) => {
-//     console.log(formValues);
-//     //{ username: 'Your enterereduseRName', password: 'your password' }
-//     try {
-//       const res = await axios.post('/auth/signup', formValues);
-//       console.log('I AM THE SIGNUP USERS TOKEN', res.data);
-//       localStorage.setItem('token', res.data);
-//       history.push('/users');
-//       // sessionStorage.setItem('token', res.data);
-//     } catch (e) {
-//       throw new Error(e);
-//     }
-//   }
-//
-//   return (
-//     <form noValidate autoComplete="off">
-//       <Field
-//         name='username'
-//         label='username'
-//         component={TextFieldInput}
-//       />
-//       <Field
-//         name='password'
-//         label='password'
-//         component={TextFieldInput}
-//       />
-//       <Button
-//         onClick={ handleSubmit(handleSignUp) }
-//         variant="contained"
-//         color="primary">
-//         Sign up
-//       </Button>
-//     </form>
-//   );
-// };
 function mapStateToProps(state) {
-    return {superman: state.viewer};
-};
-
-// mapDispatchToProps
-
-// const composedComponent = connect(mapStateToProps, { setUserToken })(SignUp);
-//
-//
-// export const WrappedSignUp = reduxForm({ form: 'signUpForm' })(composedComponent);
-
-
-// export const WrappedSignUp = reduxForm({ form: 'signUpForm' })(connect(mapStateToProps, { setUserToken })(SignUp));
+    return { superman: state.viewer };
+}
 
 export const WrappedSignUp = compose(
-    reduxForm({form: 'signUpForm'}),
-    connect(mapStateToProps, {setViewerToken})
+    reduxForm({ form: 'signUpForm' }),
+    connect(mapStateToProps, { setViewerToken })
 )(SignUp);
