@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS smedium_db;
-C
-REATE DATABASE smedium_db;
+
+CREATE DATABASE smedium_db;
 
 USE smedium_db;
 
@@ -14,7 +14,7 @@ CREATE TABLE posts (
     title VARCHAR(200) NULL,
     content MEDIUMTEXT NOT NULL,
     image VARCHAR(400) NULL,
-    userId INT NULL
+    userId INT NULL,
     datetime_created DATETIME default current_timestamp
 );
 
