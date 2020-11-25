@@ -27,7 +27,11 @@ function MainPage() {
 
     function getMappedPosts(posts) {
         if (posts.length === 0) {
-            return <div>You do not currently have any posts</div>;
+
+            return   <div >
+               <h5>You have not posted anything</h5>
+
+            </div>
         }
 
         return posts.map(post => <Post post={post}/>);
@@ -37,7 +41,7 @@ function MainPage() {
         <div className={classes.root}>
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Typography variant="h4" className={classes.blogTitle}>
-                    My Posts
+                    <h2>My Posts</h2>
                 </Typography>
                 <Grid container spacing={3}>
                     {getMappedPosts(posts)}
