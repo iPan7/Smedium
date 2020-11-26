@@ -4,8 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link, useHistory } from 'react-router-dom';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -91,6 +89,7 @@ export default function ButtonAppBar() {
             color="inherit">
             Smedium
     </Button>
+
         <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -120,6 +119,7 @@ export default function ButtonAppBar() {
           </React.Fragment>
            :
             <div>
+
               <Button
                 to='/signup'
                 component={Link}

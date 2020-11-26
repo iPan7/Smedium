@@ -93,10 +93,10 @@ const Post = (props) => {
                     <Box className={classes.author}>
                         <Box ml={6}>
                             <Typography variant="subtitle2" component="p">
-                                {username}
+                                Author: {username}
                             </Typography>
                             <Typography variant="subtitle2" color="textSecondary" component="p">
-                                {formattedDateTime}
+                                Date: {formattedDateTime}
                             </Typography>
                         </Box>
                     </Box>
