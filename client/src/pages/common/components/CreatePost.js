@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import Save from "./Save";
 import ButtonAppBar from "./ButtonAppBar";
 import '../style/CreatePost.css';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import API from "../../../utils/API";
 import Button from '@material-ui/core/Button';
 
@@ -56,10 +56,10 @@ class CreatePost extends Component {
         console.log(this.props);
         return (
             <>
-                <ButtonAppBar />
+                <ButtonAppBar/>
                 {!this.state.postSubmitted ? (
                     <div className="container">
-                        <div className="row d-flex justify-content-center" >
+                        <div className="row d-flex justify-content-center">
                             <div id="div-col-md-6" className="col-md-6 ">
                                 <div className="row">
                                     <div className="col-md-12">
@@ -68,10 +68,10 @@ class CreatePost extends Component {
                                                 <fieldset>
                                                     <legend className="text-center header" id="adp">
                                                         New Post
-                            </legend>
+                                                    </legend>
                                                     <div className="form-group">
                                                         <span className="col-md-1 col-md-offset-2 text-center">
-                                                            <i id="icons" className="fa fa-user bigicon"></i>
+                                                            <i id="icons" className="fa fa-user bigicon"/>
                                                         </span>
                                                         <input
                                                             onChange={this.onChange("title")}
@@ -92,7 +92,7 @@ class CreatePost extends Component {
                                                             type="text"
                                                             placeholder="Image URL"
                                                             className="form-control"
-                                                        ></input>
+                                                        />
                                                     </div>
                                                     <div className="form-group">
                                                         <span className="col-md-1 col-md-offset-2 text-center">
@@ -105,16 +105,16 @@ class CreatePost extends Component {
                                                             placeholder="Post content..."
                                                             className="form-control"
                                                             rows="7"
-                                                        ></textarea>
+                                                        />
                                                     </div>
                                                     <div className="form-group">
                                                         <Button
                                                             onClick={this.submitPost}
                                                             variant='contained'
-                                                            style={{ backgroundColor: '#328284', color: '#fff' }}
+                                                            style={{backgroundColor: '#328284', color: '#fff'}}
                                                         >
                                                             Submit Post
-                            </Button>
+                                                        </Button>
                                                     </div>
                                                 </fieldset>
                                             </form>
@@ -125,20 +125,20 @@ class CreatePost extends Component {
                         </div>
                     </div>
                 ) : (
-                        <Save
-                            title={this.state.title}
-                            content={this.state.content}
-                            image={this.state.image}
-                        />
-                    )}
+                    <Save
+                        title={this.state.title}
+                        content={this.state.content}
+                        image={this.state.image}
+                    />
+                )}
             </>
         );
     }
 }
 
 
-function mapStateToProps({ viewer }) {
-    return { viewer };
+function mapStateToProps({viewer}) {
+    return {viewer};
 }
 
 

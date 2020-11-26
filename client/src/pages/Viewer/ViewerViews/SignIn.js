@@ -52,16 +52,17 @@ const SignIn = (props) => {
   const { handleSubmit, history } = props;
 
   console.log(props);
-  const handleSignIn = async (formValues, dispatch) => {
-    try {
-      const res = await API.doSignIn(formValues);
-      localStorage.setItem('token', res.data);
-      dispatch(setViewerToken(res.data));
-      history.push('/');
-    } catch (e) {
 
-    }
-  };
+    const handleSignIn = async (formValues, dispatch) => {
+        try {
+            const res = await API.doSignIn(formValues);
+            localStorage.setItem('token', res.data);
+            dispatch(setViewerToken(res.data));
+            history.push('/');
+        } catch (e) {
+            throw new Error(e);
+        }
+    };
 
   return (
     <div

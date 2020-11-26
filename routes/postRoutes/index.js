@@ -6,6 +6,9 @@ const {
   insertPostApi,
   findPostByIdApi,
   findPostsByLoggedInUserApi,
+//    UPDATE POST
+  updatePostApi,
+
 } = require('../../controllers/postController');
 
 const authMiddleware = require('../../middlewares/authorizationMiddleware');
@@ -25,5 +28,9 @@ router.route('/')
 router.route('/:postId')
     .get(findPostByIdApi)
     .delete(deletePostByIdApi);
+
+// api/update post (WORK IN PROGRESS)
+router.route('/update/:postId')
+    .put(updatePostApi);
 
 module.exports = router;

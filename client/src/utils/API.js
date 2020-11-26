@@ -6,9 +6,14 @@ export default {
   },
   createPost: function (post) {
     return axios.post('/post',
-      {
-        post
-      }
+        {
+          post
+        },
+        {
+          headers: {
+            authorization:localStorage.getItem('token')
+          }
+        }
     );
   },
   deletePost: function (postId) {

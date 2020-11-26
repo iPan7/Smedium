@@ -25,11 +25,16 @@ const findPostsByUserQuery = `SELECT
                                 p.userId = ?;`
 const deletePostByIdQuery = 'DELETE FROM posts WHERE id = ?;';
 
+//UPDATE FUNCTION
+const updatePostByIdQuery = 'UPDATE posts SET content = ?, title = ?, image = ? WHERE id =?';
+
 module.exports = {
     getAllPostsQuery,
     insertPostQuery,
     findAllPostsQuery,
     findPostByIdQuery,
     findPostsByUserQuery,
-    deletePostByIdQuery
+    deletePostByIdQuery,
+    //Update Post query added
+    updatePostByIdQuery
 };

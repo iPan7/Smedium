@@ -27,7 +27,6 @@ function MainPage() {
 
     function getMappedPosts(posts) {
         if (posts.length === 0) {
-
             return   <div >
                <h5>You have not posted anything</h5>
 
@@ -42,6 +41,7 @@ function MainPage() {
             <Container maxWidth="lg" className={classes.blogsContainer}>
                 <Typography variant="h4" className={classes.blogTitle}>
                     <h2>My Posts</h2>
+
                 </Typography>
                 <Grid container spacing={3}>
                     {getMappedPosts(posts)}
