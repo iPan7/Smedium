@@ -59,7 +59,6 @@ const deletePostByIdFromDb = async (postId) => {
 
 //UPDATE QUERY FUNCTION (WORK IN PROGRESS)
 const updatePostByIdFromDb = async (postId) => {
-
     try {
         const updatePost = await findPostByIdFromDb(postId);
         await connection.query(updatePostByIdQuery, postId);

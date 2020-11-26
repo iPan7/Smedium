@@ -30,7 +30,8 @@ router.route('/:postId')
     .delete(deletePostByIdApi);
 
 // api/update post (WORK IN PROGRESS)
-router.route('/update/:postId')
+router.route('/:postId')
+    .get(findPostByIdApi)
     .put(updatePostApi);
 
 module.exports = router;
