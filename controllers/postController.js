@@ -68,6 +68,7 @@ module.exports = {
       createdPost.idOfCurrentUser = req.user.id;
       res.json(createdPost);
     } catch (e) {
+      console.log(e);
       res.status(401).json(e);
     }
   },
