@@ -1,5 +1,5 @@
-Step 1 Clone this repo somewhere in your machine
-Step 2 is cd into this repo, and then run 
+<!-- Step 1 Clone this repo somewhere in your machine
+Step 2 is cd into this repo, and then run
 MAC rm -rf .git
 Windows Powershell rm -force .git
 
@@ -30,4 +30,15 @@ The content of the file should look like the code below.
 
 JWT_SECRET=asdyuofgayudagdyuadsgar837rgsdada
  DUE DATE ON  NOVEMBER 14
+ -->
 
+Project 3 improvment ideas
+
+Finish CRUD add update function
+Add comment section for users
+Add like/unlike post option
+Add search function
+Fix non login user from not seeing post on the front page
+Add multi language options
+Friends List
+Account setting where you can add your avatar/profile picture

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import {
-  userReducer,
+  // userReducer,
   viewerReducer,
 } from '../pages';
 // This will shape what the store looks like for us

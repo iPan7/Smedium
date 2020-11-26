@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+// import axios from 'axios';
 import Button from '@material-ui/core/Button';
 
 import { setViewerToken } from '../ViewerReducer';
@@ -30,13 +30,13 @@ const TextFieldInput = ({ input, meta, label }) => {
   />;
 };
 
-const PasswordFieldInput = ({input, meta, label}) => {
-    // console.log('FIELD COMPONENT PROPS', props);
-    return <TextField
-        {...input}
-        type='password'
-        label={label}
-    />;
+const PasswordFieldInput = ({ input, meta, label }) => {
+  // console.log('FIELD COMPONENT PROPS', props);
+  return <TextField
+    {...input}
+    type='password'
+    label={label}
+  />;
 };
 
 // What Redux form does for us
@@ -52,6 +52,7 @@ const SignIn = (props) => {
   const { handleSubmit, history } = props;
 
   console.log(props);
+
     const handleSignIn = async (formValues, dispatch) => {
         try {
             const res = await API.doSignIn(formValues);
