@@ -75,18 +75,23 @@ module.exports = {
         }
     },
 
-    //UPDATE POST STILL WORKING ON IT NOT SURE IF THIS WILL WORK :)
+    //UPDATE POST
     updatePostApi: async (req, res) => {
         const {postId} = req.params;
         try {
+            //This validates the post is by the user
             const postToUpdate = await findPostByIdFromDb(postId);
-            if (postToUpdate !== req.user.id) {
+            if (postToUpdate.userId !== req.user.id) {
                 return res.status(401).send('You are unauthorized to update this post');
             }
             const updatePost = updatePostByIdFromDb(postId);
-            return res.json(updatePost);
+            console.log(updatePost)
+            return res.json(updatePost)
+
         } catch (e) {
             res.status(401).json(e);
         }
+
     }
+
 };

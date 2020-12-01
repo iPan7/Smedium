@@ -57,12 +57,13 @@ const deletePostByIdFromDb = async (postId) => {
     }
 };
 
-//UPDATE QUERY FUNCTION (WORK IN PROGRESS)
+//UPDATE QUERY FUNCTION
 const updatePostByIdFromDb = async (postId) => {
     try {
         const updatePost = await findPostByIdFromDb(postId);
         await connection.query(updatePostByIdQuery, postId);
         return updatePost;
+
     } catch (e) {
         throw new Error(e);
     }

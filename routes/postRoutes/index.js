@@ -1,13 +1,13 @@
 const router = require('express').Router();
 
 const {
-  findAllPostsApi,
-  deletePostByIdApi,
-  insertPostApi,
-  findPostByIdApi,
-  findPostsByLoggedInUserApi,
+    findAllPostsApi,
+    deletePostByIdApi,
+    insertPostApi,
+    findPostByIdApi,
+    findPostsByLoggedInUserApi,
 //    UPDATE POST
-  updatePostApi,
+    updatePostApi,
 
 } = require('../../controllers/postController');
 
@@ -15,23 +15,22 @@ const authMiddleware = require('../../middlewares/authorizationMiddleware');
 
 router.use(authMiddleware);
 
-// /api/posts/userPosts
+// /post/userPosts
 router.route('/userposts')
     .get(findPostsByLoggedInUserApi);
 
-// /api/posts
+// /post
 router.route('/')
     .get(findAllPostsApi)
     .post(insertPostApi);
 
-// /api/posts/:postId
+// /post/:postId
 router.route('/:postId')
     .get(findPostByIdApi)
     .delete(deletePostByIdApi);
 
-// api/update post (WORK IN PROGRESS)
-router.route('/:postId')
-    .get(findPostByIdApi)
+// post/update/:postId (WORK IN PROGRESS)
+router.route('/update/:postId')
     .put(updatePostApi);
 
 module.exports = router;
