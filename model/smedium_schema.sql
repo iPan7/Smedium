@@ -7,7 +7,8 @@ USE smedium_db;
 CREATE TABLE users (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     username VARCHAR(45) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    isLoggedIn BOOLEAN default false
 );
 CREATE TABLE posts (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,

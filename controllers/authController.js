@@ -3,6 +3,10 @@ const {
   insertUserToDb
 } = require('../model/userOrm');
 
+const {
+  updateUserByLoggedInFromDb
+} = require('../model/loggedOrm');
+
 const tokenForUser = (id) => {
   return jwt.sign({
     sub: id,
@@ -11,8 +15,14 @@ const tokenForUser = (id) => {
 };
 
 module.exports = {
-  signInApi: (req, res) => {
-    res.json(tokenForUser(req.user.id));
+  signInApi: async (req, res) => {
+    try {
+      const user = await updateUserByLoggedInFromDb(true, req.user.id);
+      res.json(tokenForUser(req.user.id));
+    } catch (e) {
+      res.status(400)
+        .json(e);
+    }
   },
   signUpApi: async (req, res) => {
     const { username, password } = req.body;
@@ -24,4 +34,13 @@ module.exports = {
         .json(e);
     }
   },
+  signOutApi: async (req, res) => {
+    try {
+      const user = await updateUserByLoggedInFromDb(false, req.user.id);
+      res.json(tokenForUser(req.user.id));
+    } catch (e) {
+      res.status(400)
+        .json(e);
+    }
+  }
 };
