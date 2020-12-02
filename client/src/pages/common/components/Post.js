@@ -13,6 +13,7 @@ import {Link} from "react-router-dom";
 import Delete from '@material-ui/icons/Delete';
 import IconButton from "@material-ui/core/IconButton";
 import API from "../../../utils/API";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -100,10 +101,22 @@ const Post = (props) => {
                             </Typography>
                         </Box>
                     </Box>
+                    <Button
+                        // onClick={this.editPost}
+                        variant='contained'
+                        style={{backgroundColor: '#4f3558', color: '#fff', marginLeft: '100px'}}
+                    >
+                      Edit
+                    </Button>
+
                     {postBelongsToCurrentUser && (<Box>
-                        <IconButton aria-label="delete" onClick={handleDelete}>
-                            <Delete className={classes.deletePost}/>
-                        </IconButton>
+                            <Button
+                                aria-label="delete" onClick={handleDelete}
+                                variant='contained'
+                                style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
+                            >
+                                Delete
+                            </Button>
                     </Box>)}
                 </CardActions>
             </Card>
