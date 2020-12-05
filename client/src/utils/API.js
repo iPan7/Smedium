@@ -30,5 +30,10 @@ export default {
   },
   getMyPosts() {
     return axios.get(`/post/userposts`);
+  },
+
+//  Update post
+  postUpdate: function (postId) {
+    return axios.put(`/post/update/${postId}`)
   }
 };

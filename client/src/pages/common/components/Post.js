@@ -10,8 +10,8 @@ import CardContent from '@material-ui/core/CardContent';
 import '../style/index.css';
 import {makeStyles} from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
-import Delete from '@material-ui/icons/Delete';
-import IconButton from "@material-ui/core/IconButton";
+// import Delete from '@material-ui/icons/Delete';
+// import IconButton from "@material-ui/core/IconButton";
 import API from "../../../utils/API";
 import Button from "@material-ui/core/Button";
 
