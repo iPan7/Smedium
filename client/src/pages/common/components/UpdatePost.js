@@ -27,8 +27,6 @@ class UpdatePost extends Component {
         }
     }
 
-
-
     render() {
         console.log(this.props);
         return (
@@ -116,5 +114,4 @@ class UpdatePost extends Component {
 function mapStateToProps({viewer}) {
     return {viewer};
 }
-
 export default connect(mapStateToProps)(UpdatePost);

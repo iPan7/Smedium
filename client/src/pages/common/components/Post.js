@@ -54,13 +54,13 @@ const Post = (props) => {
 
     function handleDelete() {
         const yesToDeletePost = window.confirm('Are you sure you want to delete this post?');
-        if(yesToDeletePost) {
+        if (yesToDeletePost) {
             API.deletePost(id)
                 .then(() => setDeleted(true));
         }
     }
 
-    if(deleted) {
+    if (deleted) {
         return (
             <Grid item xs={xsColumns} sm={smColumns} md={mdColumns} className={classes.postDeletedMessage}>
                 Post Deleted
@@ -101,22 +101,25 @@ const Post = (props) => {
                             </Typography>
                         </Box>
                     </Box>
-                    <Button
-                        // onClick={this.editPost}
-                        variant='contained'
-                        style={{backgroundColor: '#4f3558', color: '#fff', marginLeft: '100px'}}
-                    >
-                      Edit
-                    </Button>
+                    {/*THIS LINKS THE EDIT BUTTON TO THE EDIT POST PAGE*/}
+                    <Link to={`posts/update/${id}`}>
+                        <Button
 
+                            // onClick={this.editPost}
+                            variant='contained'
+                            style={{backgroundColor: '#4f3558', color: '#fff', marginLeft: '100px'}}
+                        >
+                            Edit
+                        </Button>
+                    </Link>
                     {postBelongsToCurrentUser && (<Box>
-                            <Button
-                                aria-label="delete" onClick={handleDelete}
-                                variant='contained'
-                                style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
-                            >
-                                Delete
-                            </Button>
+                        <Button
+                            aria-label="delete" onClick={handleDelete}
+                            variant='contained'
+                            style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
+                        >
+                            Delete
+                        </Button>
                     </Box>)}
                 </CardActions>
             </Card>
