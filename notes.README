@@ -6,3 +6,23 @@ Questions for Manny:
 4.Ask Postman unauthorized problem
 
 Learning Javascript data Structures
+
+
+
+For updating post:
+
+Post.js and UpdatePost.js I think must connect to be able to update.
+VALIDATION: MUST HIDE EDIT BUTTON IF POST DOES NOT BELONG TO USER WHO IS LOGGED IN;
+
+Maybe write update logic in UpdatePost.js then import into Post.js as props
+
+In Post.Js possible logic:
+VALIDATION: userId must match postId to be able to edit.
+
+Edit Button => onClick => Takes you to posts/update/{IdOfPost} with current post state {title, content, image}.
+
+THEN.
+In UpdatePosts.js:
+API axios call in here?
+
+User Edits fields {title, content, image} => Update Post Button => onSubmit? => updates current post => display message post was updated.

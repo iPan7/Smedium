@@ -102,6 +102,7 @@ const Post = (props) => {
                         </Box>
                     </Box>
                     {/*THIS LINKS THE EDIT BUTTON TO THE EDIT POST PAGE*/}
+                    {postBelongsToCurrentUser && (
                     <Link to={`posts/update/${id}`}>
                         <Button
 
@@ -112,6 +113,7 @@ const Post = (props) => {
                             Edit
                         </Button>
                     </Link>
+                    )}
                     {postBelongsToCurrentUser && (<Box>
                         <Button
                             aria-label="delete" onClick={handleDelete}
