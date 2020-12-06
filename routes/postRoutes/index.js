@@ -12,16 +12,16 @@ const authMiddleware = require('../../middlewares/authorizationMiddleware');
 
 router.use(authMiddleware);
 
-// /api/posts/userPosts
+// /posts/userPosts
 router.route('/userposts')
     .get(findPostsByLoggedInUserApi);
 
-// /api/posts
+// /posts
 router.route('/')
     .get(findAllPostsApi)
     .post(insertPostApi);
 
-// /api/posts/:postId
+// /posts/:postId
 router.route('/:postId')
     .get(findPostByIdApi)
     .delete(deletePostByIdApi);

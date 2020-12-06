@@ -24,3 +24,10 @@ CREATE TABLE friends (
     friendId INT references users(id),
     friendPost INT references posts(id)
 );
+
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    mainPost INT references posts(id),
+    content MEDIUMTEXT NOT NULL,
+    commentMaker VARCHAR(45) references users(username)
+);
