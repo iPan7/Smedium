@@ -7,7 +7,6 @@ import { Link, useHistory } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { setViewerToken } from '../../Viewer';
 

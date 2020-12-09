@@ -15,6 +15,7 @@ const authMiddleware = require('../../middlewares/authorizationMiddleware');
 
 router.use(authMiddleware);
 
+
 // /post/userPosts
 router.route('/userposts')
     .get(findPostsByLoggedInUserApi);
@@ -25,6 +26,7 @@ router.route('/')
     .post(insertPostApi);
 
 // /post/:postId
+
 router.route('/:postId')
     .get(findPostByIdApi)
     .delete(deletePostByIdApi);

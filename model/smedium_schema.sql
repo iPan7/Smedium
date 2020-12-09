@@ -7,7 +7,8 @@ USE smedium_db;
 CREATE TABLE users (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     username VARCHAR(45) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    isLoggedIn BOOLEAN default false
 );
 CREATE TABLE posts (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -22,4 +23,11 @@ CREATE TABLE friends (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     friendId INT references users(id),
     friendPost INT references posts(id)
+);
+
+CREATE TABLE comments (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    mainPost INT references posts(id),
+    content MEDIUMTEXT NOT NULL,
+    commentMaker VARCHAR(45) references users(username)
 );

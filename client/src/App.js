@@ -5,6 +5,8 @@ import MainPage from './pages/common/components/MainPage';
 import CreatePost from './pages/common/components/CreatePost';
 import SinglePost from "./pages/common/components/SinglePost";
 import UpdatePost from './pages/common/components/UpdatePost';
+import MyAccount from './pages/common/components/MyAccount';
+
 import {
   WrappedSignUp,
   WrappedSignIn,
@@ -21,6 +23,7 @@ function App() {
       <Route exact path='/createpost' component={CreatePost} />
       <Route exact path='/posts/:postId' component={SinglePost} />
       <Route exact path='/posts/mine' component={MyPosts} />
+      <Route exact path='/myaccount' component={MyAccount} />
       <Route exact path="/" component={MainPage} />
     </Router>
   );

@@ -14,6 +14,8 @@ import {Link} from "react-router-dom";
 // import IconButton from "@material-ui/core/IconButton";
 import API from "../../../utils/API";
 import Button from "@material-ui/core/Button";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -60,7 +62,7 @@ const Post = (props) => {
         }
     }
 
-    if (deleted) {
+    if(deleted) {
         return (
             <Grid item xs={xsColumns} sm={smColumns} md={mdColumns} className={classes.postDeletedMessage}>
                 Post Deleted
