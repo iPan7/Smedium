@@ -1,55 +1,31 @@
-import React, {Component} from "react";
-import Save from "./Save";
-import ButtonAppBar from "./ButtonAppBar";
-import '../style/CreatePost.css';
-import {connect} from 'react-redux';
+import React, {Component} from 'react';
+// import {connect} from 'react-redux';
+// import {Link} from "react-router-dom";
+// import Button from "@material-ui/core/Button";
 import API from "../../../utils/API";
-import Button from '@material-ui/core/Button';
+// import Save from "./Save";
+// import ButtonAppBar from "./ButtonAppBar";
+import '../style/CreatePost.css';
+import axios from "axios";
+import ButtonAppBar from "./ButtonAppBar";
+import Button from "@material-ui/core/Button";
+import Save from "./Save";
+import {connect} from 'react-redux';
+//Have the user be able to edit their post on the main page
+//Create edit button on the post
+//Be able to edit title, content, image
+//Have a 'submit edit' button once user has edited their post
 
-class CreatePost extends Component {
-    state = {
-        title: "",
-        content: "",
-        image: "",
-        postSubmitted: false,
-    };
+class UpdatePost extends Component {
+    constructor(props) {
+        super(props);
 
-    componentDidMount() {
-        if (!this.props.viewer?.token) {
-            this.props.history.push('/');
+        this.state = {
+            title: '',
+            content: '',
+            image: '',
         }
     }
-
-    onChange = (input) => (e) => {
-        this.setState({
-            [input]: e.target.value,
-        });
-    };
-
-    submitPost = (e) => {
-        if (!this.state.title || !this.state.content) {
-            alert("All fields should be filed");
-            e.preventDefault();
-        } else {
-            const {
-                title,
-                content,
-                image
-            } = this.state;
-            const post = {
-                title,
-                content,
-                image
-            };
-            API.createPost(post)
-                .then(data => {
-                    console.log(data);
-                    this.setState({
-                        postSubmitted: true,
-                    });
-                });
-        }
-    };
 
     render() {
         console.log(this.props);
@@ -66,14 +42,14 @@ class CreatePost extends Component {
                                             <form id="new-post-background" className="form-horizontal" method="post">
                                                 <fieldset>
                                                     <legend className="text-center header" id="adp">
-                                                        New Post
+                                                        Update Post
                                                     </legend>
                                                     <div className="form-group">
                                                         <span className="col-md-1 col-md-offset-2 text-center">
                                                             <i id="icons" className="fa fa-user bigicon"/>
                                                         </span>
                                                         <input
-                                                            onChange={this.onChange("title")}
+                                                            // onChange={this.onChange("title")}
                                                             name="title"
                                                             type="text"
                                                             placeholder="Title"
@@ -86,7 +62,7 @@ class CreatePost extends Component {
                                                             <i id="icons" className="fa fa-user bigicon"></i>
                                                         </span>
                                                         <input
-                                                            onChange={this.onChange("image")}
+                                                            // onChange={this.onChange("image")}
                                                             name="image"
                                                             type="text"
                                                             placeholder="Image URL"
@@ -98,7 +74,7 @@ class CreatePost extends Component {
                                                             <i id="icons" className="fa fa-pencil-square-o bigicon"></i>
                                                         </span>
                                                         <textarea
-                                                            onChange={this.onChange("content")}
+                                                            // onChange={this.onChange("content")}
                                                             name="content"
                                                             type="text"
                                                             placeholder="Post content..."
@@ -112,7 +88,7 @@ class CreatePost extends Component {
                                                             variant='contained'
                                                             style={{backgroundColor: '#328284', color: '#fff'}}
                                                         >
-                                                            Submit Post
+                                                            Update Post
                                                         </Button>
                                                     </div>
                                                 </fieldset>
@@ -135,10 +111,7 @@ class CreatePost extends Component {
     }
 }
 
-
 function mapStateToProps({viewer}) {
     return {viewer};
 }
-
-
-export default connect(mapStateToProps)(CreatePost);
+export default connect(mapStateToProps)(UpdatePost);

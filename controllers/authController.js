@@ -34,6 +34,7 @@ module.exports = {
         .json(e);
     }
   },
+};{}
   signOutApi: async (req, res) => {
     try {
       const user = await updateUserByLoggedInFromDb(false, req.user.id);

@@ -22,40 +22,39 @@ const Saveas = (props) => {
 
   return (
 
-    <div >
-      <h4 style={{ textAlign: 'center' }}>Your post has been posted on the main page!</h4>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justify="center"
+      <div >
+        <h4 style={{ textAlign: 'center' }}>Your post has been posted on the main page!</h4>
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justify="center"
 
-      >
-        <Grid item xs={3}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.media}
-                image={props.image}
-                title={props.title}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {props.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  {props.content}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-
-            </CardActions>
-          </Card>
+        >
+          <Grid item xs={3}>
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                    className={classes.media}
+                    image={props.image}
+                    title={props.title}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {props.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {props.content}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+              </CardActions>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
   );
 };
 export default Saveas;
