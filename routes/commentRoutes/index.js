@@ -12,7 +12,7 @@ const {
 router.route('/')
       .get(findCommentsByPost);
 
-router.route('/makepost')
+router.route('/makecomment')
       .post(insertCommentsByPost);
 
 router.route('/:commentId')
