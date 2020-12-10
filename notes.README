@@ -1,0 +1,28 @@
+Questions for Manny:
+
+1. How to use postman with smedium to test routes,
+2. Ask Manny to look over code for update post.
+3. Once update post backend is working ask for tips on how to get it to work on the front end.
+4.Ask Postman unauthorized problem
+
+Learning Javascript data Structures
+
+
+
+For updating post:
+
+Post.js and UpdatePost.js I think must connect to be able to update.
+VALIDATION: MUST HIDE EDIT BUTTON IF POST DOES NOT BELONG TO USER WHO IS LOGGED IN;
+
+Maybe write update logic in UpdatePost.js then import into Post.js as props
+
+In Post.Js possible logic:
+VALIDATION: userId must match postId to be able to edit.
+
+Edit Button => onClick => Takes you to posts/update/{IdOfPost} with current post state {title, content, image}.
+
+THEN.
+In UpdatePosts.js:
+API axios call in here?
+
+User Edits fields {title, content, image} => Update Post Button => onSubmit? => updates current post => display message post was updated.

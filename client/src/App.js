@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './pages/common/components/Navbar';
+import Comments from './pages/common/components/Comments';
 import MainPage from './pages/common/components/MainPage';
 import CreatePost from './pages/common/components/CreatePost';
 import SinglePost from "./pages/common/components/SinglePost";
+import UpdatePost from './pages/common/components/UpdatePost';
 import MyAccount from './pages/common/components/MyAccount';
+
 import {
   WrappedSignUp,
   WrappedSignIn,
@@ -15,6 +18,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <Route path='/posts/update/:postId' component={UpdatePost}/>
       <Route path='/signup' component={WrappedSignUp} />
       <Route path='/signin' component={WrappedSignIn} />
       <Route exact path='/createpost' component={CreatePost} />

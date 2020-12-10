@@ -1,41 +1,32 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .Post {
-  max-width: 800px;
-  width: 100%;
-  display: table;
-  margin: 0auto;
-  padding: 20px 50px;
-}
-.button {
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-  background-color: blueviolet;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 20px;
-}
-.jumbotron {
-  background-image: url(https://blog.hostbaby.com/wp-content/uploads/2013/07/scuffedstatic_dark1400x900.jpg);
-}
-.Smedium {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
-  font-size: 25px;
+    max-width: 800px;
+    width: 100%;
+    display: table;
+    margin: 0auto;
+    padding: 20px 50px;
 }
 
-.btn {
-  background-image: linear-gradient(to right, #3a7bd5 51%, #00d2ff);
+#icons {
+    color: #fff;
 }
+
 #adp {
-  font-size: 30px;
-  font-family: bold, Helvetica, sans-serif;
-  color: white;
+    font-size: 25px;
+    font-family: bold, Helvetica, sans-serif;
+    color: white;
+    padding-top: 25px;
+}
+
+#new-post-background {
+    background-color: #4f3558;
+    border-radius: 5px;
+}
+
+#div-col-md-6 {
+    background-color: #4f3558;
+    border-radius: 5px;
 }

@@ -10,9 +10,10 @@ import CardContent from '@material-ui/core/CardContent';
 import '../style/index.css';
 import {makeStyles} from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
-import Delete from '@material-ui/icons/Delete';
-import IconButton from "@material-ui/core/IconButton";
+// import Delete from '@material-ui/icons/Delete';
+// import IconButton from "@material-ui/core/IconButton";
 import API from "../../../utils/API";
+import Button from "@material-ui/core/Button";
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
@@ -55,11 +56,12 @@ const Post = (props) => {
 
     function handleDelete() {
         const yesToDeletePost = window.confirm('Are you sure you want to delete this post?');
-        if(yesToDeletePost) {
+        if (yesToDeletePost) {
             API.deletePost(id)
                 .then(() => setDeleted(true));
         }
     }
+
     if(deleted) {
         return (
             <Grid item xs={xsColumns} sm={smColumns} md={mdColumns} className={classes.postDeletedMessage}>
@@ -101,10 +103,27 @@ const Post = (props) => {
                             </Typography>
                         </Box>
                     </Box>
+                    {/*THIS LINKS THE EDIT BUTTON TO THE EDIT POST PAGE*/}
+                    {postBelongsToCurrentUser && (
+                    <Link to={`posts/update/${id}`}>
+                        <Button
+
+                            // onClick={this.editPost}
+                            variant='contained'
+                            style={{backgroundColor: '#4f3558', color: '#fff', marginLeft: '100px'}}
+                        >
+                            Edit
+                        </Button>
+                    </Link>
+                    )}
                     {postBelongsToCurrentUser && (<Box>
-                        <IconButton aria-label="delete" onClick={handleDelete}>
-                            <Delete className={classes.deletePost}/>
-                        </IconButton>
+                        <Button
+                            aria-label="delete" onClick={handleDelete}
+                            variant='contained'
+                            style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
+                        >
+                            Delete
+                        </Button>
                     </Box>)}
                 </CardActions>
             </Card>

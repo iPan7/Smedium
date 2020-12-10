@@ -55,5 +55,9 @@ export default {
   },
   deleteFriend(friendId){
     return axios.delete(`/friends/${friendId}`)
+
+//  Update post
+  postUpdate: function (postId) {
+    return axios.put(`/post/update/${postId}`)
   }
 };
