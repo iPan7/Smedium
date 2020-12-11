@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const {
       findCommentsByPost,
+      findCommentById,
       insertCommentsByPost,
       updateCommentsByPost,
       deleteComment
@@ -11,15 +12,15 @@ const {
 router.route('/')
       .get(findCommentsByPost);
 
-router.route('/makepost')
+router.route('/makecomment')
       .post(insertCommentsByPost);
 
 router.route('/:commentId')
-      .get(findCommentsByPost)
+      .get(findCommentById)
       .delete(deleteComment);
 
 router.route('/update')
-      .get(updateCommentsByPost)
+      .get(findCommentById)
       .post(updateCommentsByPost);
 
 

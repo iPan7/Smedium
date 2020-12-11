@@ -1,4 +1,5 @@
 import axios from "axios";
+import { get } from "../../../routes";
 
 export default {
   getAllPosts: function () {
@@ -31,6 +32,29 @@ export default {
   getMyPosts() {
     return axios.get(`/post/userposts`);
   },
+  getComments(){
+    return axios.get('/comments')
+  },
+  insertComment(){
+    return axios.post('/comments/makecomment')
+  },
+  updateComment(){
+    return axios.post('/comments/update')
+  },
+  deleteComments(commentId){
+    return axios.delete(`/comments/${commentId}`)
+  },
+  getLoggedUsers(){
+    return axios.get('/loggedUsers')
+  },
+  getFriendsByUser(){
+    return axios.get('/friends')
+  },
+  insertFriends(){
+    return axios.post('/friends/newfriend')
+  },
+  deleteFriend(friendId){
+    return axios.delete(`/friends/${friendId}`)
 
 //  Update post
   postUpdate: function (postId) {

@@ -1,8 +1,14 @@
-const findAllFriendsByUserId = 'SELECT * WHERE friend id'
-const findFriendPostById = ''
-const findFriendPostsByFriendId
-const findFriendsOfFriends
+const findFriendsByUser = "SELECT friendId FROM friends WHERE  = ?;";
 
-const postFriend 
+const findFriendById = "SELECT * FROM friends WHERE id = ?;";
 
-const deletFriend = 'DELETE '
+const insertFriend = "INSERT INTO friends (friendId, content) VALUES (?, ?);";
+
+const deleteFriend = "DELETE * FROM friends WHERE id = ?;";
+
+module.exports={
+      findFriendsByUser,
+      findFriendById,
+      insertFriend,
+      deleteFriend
+}

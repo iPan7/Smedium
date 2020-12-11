@@ -1,5 +1,6 @@
 const { 
   findCommentByPosts,
+  findCommentById,
   insertComments,
   updateComments,
   deleteComments
@@ -14,6 +15,16 @@ const fetchCommentsByPostDb = async (mainPost) => {
     return rows;
   } catch (e) {
     console.log('this is the fetch commentOrm', e);
+    throw new Error(e);
+  }
+};
+const fetchCommentsByIdDb = async (commentId) => {
+  try {
+    const [rows] = await connection.query(findCommentById, commentId);
+    console.log('the fetchId orm', rows);
+    return rows[0];
+  } catch (e) {
+    console.log('this is the fetchId commentOrm', e);
     throw new Error(e);
   }
 };
@@ -44,13 +55,13 @@ const deleteCommentsDb = async (id) => {
     return rows;
   } catch (e) {
     throw new Error(e);
-    console.log('this is the delete commentOrm')
   }
 };
 
 module.exports = {
   fetchCommentsByPostDb,
+  fetchCommentsByIdDb,
   insertCommentDb,
   updateCommentsDb,
   deleteCommentsDb
-}
+};

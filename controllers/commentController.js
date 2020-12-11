@@ -1,5 +1,6 @@
 const { 
   fetchCommentsByPostDb,
+  fetchCommentsByIdDb,
   insertCommentDb,
   updateCommentsDb,
   deleteCommentsDb
@@ -12,6 +13,16 @@ module.exports = {
       console.log('Controller 12: find comment', req.body.mainPost);
       let postComments = await fetchCommentsByPostDb(mainPostId);
       return res.json(postComments)
+    } catch (e) {
+      res.status(401).json('this is the find comment controller', e);
+    }
+  },
+  findCommentById: async (req, res) => {
+    try {
+      const commentId = req.body;
+      console.log('Controller 12: find comment', req.body);
+      let comment = await fetchCommentsByIdDb(commentId);
+      return res.json(comment)
     } catch (e) {
       res.status(401).json('this is the find comment controller', e);
     }
@@ -42,11 +53,15 @@ module.exports = {
     }
   },  
   deleteComment: async (req, res) => {
+    const id = req.params.commentId;
+    console.log('Controller: delete comment', id);
     try {
-      const id = req;
-      console.log('Controller: delete comment', req);
-      let deletedComment = await deleteCommentsDb(id);
-      return res.json(deletedComment)
+      const commentToDelete = await fetchCommentsByIdDb(id);
+      console.log('comment to delete', commentToDelete.id);
+      if (id !== commentToDelete.id) {
+        return res.status(401).json('You are not authorized to delete this comment')
+      } 
+      return res.json('It hit this delete', deletedComment)
     } catch (e) {
       res.status(401).json('this is the delete comment controller', e);
     }
