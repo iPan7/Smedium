@@ -5,6 +5,7 @@ import Post from "./Post";
 import {makeStyles} from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Comments from './Comments'
 
 const useStyles = makeStyles((theme) => ({
     blogsContainer: {
@@ -38,6 +39,7 @@ function SinglePost() {
                     <Post post={post} columnSpan={12} mediaHeight={500}/>
                 </Grid>
             </Container>
+            <Comments />
 
         </>
     );

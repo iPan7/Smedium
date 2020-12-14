@@ -1,5 +1,4 @@
 import axios from "axios";
-import { get } from "../../../routes";
 
 export default {
   getAllPosts: function () {
@@ -55,7 +54,7 @@ export default {
   },
   deleteFriend(friendId){
     return axios.delete(`/friends/${friendId}`)
-
+  },
 //  Update post
   postUpdate: function (postId) {
     return axios.put(`/post/update/${postId}`)
