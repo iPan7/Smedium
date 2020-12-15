@@ -21,7 +21,7 @@ CREATE TABLE posts (
 
 CREATE TABLE friends (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    friendId INT references users(id) NOT NULL,
+    friendId INT references users(id),
     friendPostId INT references posts(id),
     friendPost VARCHAR(400) NULL
 );
@@ -31,5 +31,6 @@ CREATE TABLE comments (
     mainPost INT references posts(id),
     content MEDIUMTEXT NOT NULL,
     commentMaker VARCHAR(45) references users(username),
-    commentMakerId INT references users(id)
+	commentMakerId INT references users(id)
+
 );
