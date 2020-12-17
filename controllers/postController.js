@@ -12,6 +12,7 @@ module.exports = {
     findPostsByLoggedInUserApi: async (req, res) => {
         try {
             const idOfCurrentUser = req.user.id;
+            console.log('the find post controller',idOfCurrentUser);
             let userPosts = await findPostsByUserFromDb(idOfCurrentUser);
             userPosts = userPosts.map(post => {
                 post.idOfCurrentUser = idOfCurrentUser;

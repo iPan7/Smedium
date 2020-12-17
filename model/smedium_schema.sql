@@ -29,8 +29,7 @@ CREATE TABLE friends (
 CREATE TABLE comments (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     mainPost INT references posts(id),
-    content MEDIUMTEXT NOT NULL,
+    content VARCHAR(400) NOT NULL,
     commentMaker VARCHAR(45) references users(username),
 	commentMakerId INT references users(id)
-
 );

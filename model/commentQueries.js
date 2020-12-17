@@ -6,7 +6,7 @@ const insertComments = "INSERT INTO comments (mainPost, content, commentMaker) V
 
 const updateComments = "UPDATE comments SET content = ? WHERE id = ?;";
 
-const deleteComments = "DELETE * FROM comments WHERE id = ?;";
+const deleteComments = "DELETE FROM comments WHERE id = ?;";
 
 module.exports={
       findCommentByPosts,
