@@ -60,7 +60,8 @@ const SignIn = (props) => {
             dispatch(setViewerToken(res.data));
             history.push('/');
         } catch (e) {
-            throw new Error(e);
+          const $error = document.getElementById("error");
+          $error.append("Your username and/or password are incorrect.")
         }
     };
 
@@ -90,6 +91,7 @@ const SignIn = (props) => {
           style={{ backgroundColor: '#4f3558', color: '#fff' }}>
           Login
       </Button>
+      <p style={{color:"red"}} id="error"></p>
       </form>
     </div>
   );
