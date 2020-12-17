@@ -105,7 +105,7 @@ const Post = (props) => {
                     </Box>
                     {/*THIS LINKS THE EDIT BUTTON TO THE EDIT POST PAGE*/}
                     {postBelongsToCurrentUser && (
-                    <Link to={`posts/update/${id}`}>
+                    <Link to={`/posts/update/${id}`}>
                         <Button
 
                             // onClick={this.editPost}
