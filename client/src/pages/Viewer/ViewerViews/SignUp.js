@@ -62,8 +62,7 @@ class SignUp extends Component {
             this.props.history.push('/');
             // sessionStorage.setItem('token', res.data);
         } catch (e) {
-            const $taken = document.getElementById("taken");
-            $taken.innerHTML("This username has already been taken.")
+            document.getElementById("taken").innerHTML = "This username has already been taken.";
         }
     }
 

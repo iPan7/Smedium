@@ -60,8 +60,7 @@ const SignIn = (props) => {
             dispatch(setViewerToken(res.data));
             history.push('/');
         } catch (e) {
-          const $error = document.getElementById("error");
-          $error.innerHTML("Your username and/or password are incorrect.")
+          document.getElementById("error").innerHTML = "Your username and/or password are incorrect.";
         }
     };
 
