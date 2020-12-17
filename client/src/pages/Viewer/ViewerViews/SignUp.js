@@ -63,7 +63,7 @@ class SignUp extends Component {
             // sessionStorage.setItem('token', res.data);
         } catch (e) {
             const $taken = document.getElementById("taken");
-            $taken.append("This username has already been taken.")
+            $taken.innerHTML("This username has already been taken.")
         }
     }
 
