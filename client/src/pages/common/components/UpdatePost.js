@@ -41,7 +41,7 @@ class UpdatePost extends Component {
     const patharray = window.location.pathname.split("/");
     const postId = patharray[patharray.length - 1];
     API.getSinglePost(postId).then(({ data: post }) => {
-      this.setState({ post });
+      this.setState({ post, title: post.title, content: post.content, image: post.image });
       console.log(this.state.post);
     });
   }
@@ -76,8 +76,10 @@ class UpdatePost extends Component {
                               // onChange={this.onChange("title")}
                               name="title"
                               type="text"
+                              id="title"
                               placeholder="Title"
                               className="form-control"
+                              value={this.state.title}
                             />
                           </div>
                           <div className="form-group">
@@ -90,6 +92,7 @@ class UpdatePost extends Component {
                               type="text"
                               placeholder="Image URL"
                               className="form-control"
+                              value={this.state.image}
                             />
                           </div>
                           <div className="form-group">
@@ -106,6 +109,7 @@ class UpdatePost extends Component {
                               placeholder="Post content..."
                               className="form-control"
                               rows="7"
+                              value={this.state.content}
                             />
                           </div>
                           <div className="form-group">
