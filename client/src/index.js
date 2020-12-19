@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import { createLogger } from 'redux-logger';
 import axios from "axios";
-import '@fortawesome/fontawesome-free/css/all.min.css';
+// import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 

@@ -5,7 +5,7 @@ const {
       findCommentById,
       insertCommentsByPost,
       updateCommentsByPost,
-      deleteComment
+      deleteComments
 } = require('../../controllers/commentController');
 
 // /comments
@@ -15,13 +15,14 @@ router.route('/')
 router.route('/makecomment')
       .post(insertCommentsByPost);
 
-router.route('/:commentId')
+router.route('/findcommentbyid/:id')
       .get(findCommentById)
-      .delete(deleteComment);
 
-router.route('/update')
-      .get(findCommentById)
-      .post(updateCommentsByPost);
+router.route('/deletecomment')
+      .delete(deleteComments);
+
+router.route('/update/:id')
+      .put(updateCommentsByPost);
 
 
 module.exports = router;

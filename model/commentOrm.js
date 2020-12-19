@@ -20,9 +20,9 @@ const fetchCommentsByPostDb = async (mainPost) => {
 };
 const fetchCommentsByIdDb = async (commentId) => {
   try {
-    const [rows] = await connection.query(findCommentById, commentId);
+    const [rows] = await connection.query(findCommentById, [commentId]);
     console.log('the fetchId orm', rows);
-    return rows[0];
+    return rows;
   } catch (e) {
     console.log('this is the fetchId commentOrm', e);
     throw new Error(e);
@@ -50,7 +50,7 @@ const updateCommentsDb = async (content, id) => {
 };
 const deleteCommentsDb = async (id) => {
   try {
-    const [rows] = await connection.query(deleteComments, id);
+    const rows = await connection.query(deleteComments, id);
     console.log('this is the delete commentOrm', rows)
     return rows;
   } catch (e) {
