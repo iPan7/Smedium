@@ -29,7 +29,9 @@
       <option name="presentableId" value="Default" />
       <updated>1608153682293</updated>
       <workItem from="1608153684835" duration="1926000" />
-      <workItem from="1608224981626" duration="2028000" />
+      <workItem from="1608224981626" duration="4269000" />
+      <workItem from="1608318192045" duration="139000" />
+      <workItem from="1608321209185" duration="571000" />
     </task>
     <servers />
   </component>
@@ -42,7 +44,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Main/assets/js/questions.js</url>
           <line>39</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
