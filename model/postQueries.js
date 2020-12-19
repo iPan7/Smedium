@@ -6,7 +6,7 @@ const findPostByIdQuery = `SELECT p.*, u.username FROM posts p INNER JOIN users 
 const findPostsByUserQuery = `SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.userId = u.id WHERE p.userId = ?;`
 const deletePostByIdQuery = 'DELETE FROM posts WHERE id = ?;';
 //UPDATE FUNCTION
-const updatePostByIdQuery = 'UPDATE posts SET content = ?, title = ?, image = ?,  WHERE id = ?;';
+const updatePostByIdQuery = 'UPDATE posts SET content = ?, title = ?, image = ?  WHERE id = ?;';
 
 
 module.exports = {

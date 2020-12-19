@@ -89,6 +89,7 @@ module.exports = {
             return res.json(updatePost)
 
         } catch (e) {
+            console.log(e)
             res.status(401).json(e);
         }
 

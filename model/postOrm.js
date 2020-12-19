@@ -61,10 +61,9 @@ const deletePostByIdFromDb = async (postId) => {
 const updatePostByIdFromDb = async (post) => {
     console.log('ORM', post)
     try {
-        const updatePost = await findPostByIdFromDb(post.id);
         await connection.query(updatePostByIdQuery, [post.content, post.title, post.image, post.id]);
-        return updatePost;
-
+        const updatedPost = await findPostByIdFromDb(post.id);
+        return updatedPost;
     } catch (e) {
         throw new Error(e);
     }
