@@ -40,6 +40,11 @@ const managerData = () => {
         message: "What is Project Manager's ID?",
         name: 'managerID',
       },
+      {
+        type: 'input',
+        message: "What is Project Manager's Email?",
+        name: 'managerEmail',
+      },
 
       {
         type: 'input',
