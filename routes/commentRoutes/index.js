@@ -15,14 +15,14 @@ router.route('/')
 router.route('/makecomment')
       .post(insertCommentsByPost);
 
-router.route('/findcommentbyid')
+router.route('/findcommentbyid/:id')
       .get(findCommentById)
 
 router.route('/deletecomment')
       .delete(deleteComments);
 
-router.route('/update')
-      .post(updateCommentsByPost);
+router.route('/update/:id')
+      .put(updateCommentsByPost);
 
 
 module.exports = router;

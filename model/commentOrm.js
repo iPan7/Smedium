@@ -20,9 +20,9 @@ const fetchCommentsByPostDb = async (mainPost) => {
 };
 const fetchCommentsByIdDb = async (commentId) => {
   try {
-    const rows = await connection.query(findCommentById, [commentId]);
-    console.log('the fetchId orm', rows[0][0]);
-    return rows[0][0];
+    const [rows] = await connection.query(findCommentById, [commentId]);
+    console.log('the fetchId orm', rows);
+    return rows;
   } catch (e) {
     console.log('this is the fetchId commentOrm', e);
     throw new Error(e);

@@ -19,10 +19,9 @@ module.exports = {
   },
   findCommentById: async (req, res) => {
     try {
-      console.log(req.body)
-      const commentId = req.body['id'];
-      console.log(' new console log', req.body.id)
-      console.log('Controller 23: find comment by Id', req.body);
+      console.log(req.params.id)
+      const commentId = req.params.id;
+      console.log('Controller 23: find comment by Id', req.params.id);
       let comment = await fetchCommentsByIdDb(commentId);
       return res.json(comment)
     } catch (e) {
@@ -45,9 +44,9 @@ module.exports = {
   },  
   updateCommentsByPost: async (req, res) => {
     try {
-      const content = req.body;
-      const id = req.body;
-      console.log('Controller 48: update comment', req);
+      const content = req.body.content;
+      const id = req.params.id;
+      console.log('Controller 48: update comment', req.body);
       let updatedComment = await updateCommentsDb(content, id);
       return res.json(updatedComment)
     } catch (e) {

@@ -5,49 +5,51 @@ const {
 	deleteFriendsByIdDb
  } = require('../model/friend/friendOrm');
 
+ const {
+  fetchUserByIdFromDb
+ } = require('../model/userOrm')
+
  module.exports = {
 	findFriendsByUser: async (req, res) => {
     try {
-      const mainPostId = req.body.mainPost;
-      console.log('Controller 12: find comment', req.body.mainPost);
-      let postComments = await fetchCommentsByPostDb(mainPostId);
-      return res.json(postComments)
+      const userId = req.body.id
+      console.log("User id", req.body)
+      let user = await fetchUserByIdFromDb(userId)
+      console.log('Controller 12: find friend', user);
+      let friends = await fetchFriendsByIdDb(user.id);
+      return res.json(friends)
     } catch (e) {
-      res.status(401).json('this is the find comment controller', e);
+      res.status(401).json('this is the find friend controller', e);
     }
 	},
 	findFriendById: async (req, res) => {
     try {
       const commentId = req.body;
-      console.log('Controller 12: find comment', req.body);
-      let comment = await fetchCommentsByIdDb(commentId);
-      return res.json(comment)
+      console.log('Controller 12: find friend', req.body);
+      let friend = await fetchCommentsByIdDb(commentId);
+      return res.json(friend)
     } catch (e) {
-      res.status(401).json('this is the find comment controller', e);
+      res.status(401).json('this is the find friend controller', e);
     }
 	},
 	insertFriendByUser: async (req, res) => {
     try {
-      // params: { commentId: 'makepost' },
-      // query: { main: 'How', comment: 'Am', commentMaker: 'I' }
-      const mainPostId = req.body.mainPostId;
-      const content = req.body.content;
-      const commentMaker = req.body.commentMaker;
-      console.log('Controller 26: insert comment', req.body);
-      let post = await insertCommentDb(mainPostId, content, commentMaker);
+      const user = req.body.id
+      console.log('Controller 26: insert friend', req.body);
+      let post = await this.insertFriendByUser(mainPostId, content, commentMaker);
       return res.json(post)
     } catch (e) {
-      res.status(401).json('this is the insert comment controller', e);
+      res.status(401).json('this is the insert friend controller', e);
     }
 	},
 	deleteFriendById: async (req, res) => {
     try {
       const commentId = req.body;
-      console.log('Controller 12: find comment', req.body);
-      let comment = await fetchCommentsByIdDb(commentId);
-      return res.json(comment)
+      console.log('Controller 12: find friend', req.body);
+      let friend = await fetchCommentsByIdDb(commentId);
+      return res.json(friend)
     } catch (e) {
-      res.status(401).json('this is the find comment controller', e);
+      res.status(401).json('this is the find friend controller', e);
     }
 	},
  };

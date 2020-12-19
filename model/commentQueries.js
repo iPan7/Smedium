@@ -1,4 +1,4 @@
-const findCommentByPosts = "SELECT commentMaker, content FROM comments WHERE mainPost = ?;";
+const findCommentByPosts = "SELECT commentMaker, content, id FROM comments WHERE mainPost = ?;";
 
 const findCommentById = "SELECT * FROM comments WHERE id = ?;";
 

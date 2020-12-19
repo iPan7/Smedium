@@ -1,4 +1,4 @@
-const findFriendsByUser = "SELECT friendId FROM friends WHERE  = ?;";
+const findFriendsByUser = "SELECT friendId, friendName FROM friends WHERE friendId = ?;";
 
 const findFriendById = "SELECT * FROM friends WHERE id = ?;";
 

@@ -4,6 +4,7 @@ const {
       insertFriend,
       deleteFriend
 } = require('./friendQueries');
+const connection = require("../../config/connection");
 
 const fetchFriendsByUserIdDb = async (mainPost) => {
       try {

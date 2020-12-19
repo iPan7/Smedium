@@ -22,6 +22,7 @@ CREATE TABLE posts (
 CREATE TABLE friends (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     friendId INT references users(id),
+    friendName VARCHAR(45) references users(username),
     friendPostId INT references posts(id),
     friendPost VARCHAR(400) NULL
 );
