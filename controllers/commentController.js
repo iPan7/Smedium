@@ -45,8 +45,8 @@ module.exports = {
   },  
   updateCommentsByPost: async (req, res) => {
     try {
-      const content = req;
-      const id = req;
+      const content = req.body;
+      const id = req.body;
       console.log('Controller 48: update comment', req);
       let updatedComment = await updateCommentsDb(content, id);
       return res.json(updatedComment)
