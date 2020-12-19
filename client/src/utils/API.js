@@ -57,11 +57,12 @@ export default {
   },
 //  Update post
   postUpdate(post) {
+    console.log(post);
     return axios.put(`/post/update/${post.id}`, post, {
       headers: {
-        'Authorization':localStorage.getItem('token'),
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application.json',
+        'authorization':localStorage.getItem('token'),
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Content-Type': 'application.json',
       }
     })
   }

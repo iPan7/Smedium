@@ -20,6 +20,7 @@ const findAllPostsFromDb = async () => {
 };
 
 const findPostByIdFromDb = async (postId) => {
+    console.log(postId);
     try {
         const [result] = await connection.query(findPostByIdQuery, postId);
         return result[0];
@@ -59,12 +60,13 @@ const deletePostByIdFromDb = async (postId) => {
 
 //UPDATE QUERY FUNCTION
 const updatePostByIdFromDb = async (post) => {
-    console.log('ORM', post)
+    // console.log('ORM', post)
     try {
-        await connection.query(updatePostByIdQuery, [post.content, post.title, post.image, post.id]);
+        const sql = await connection.query(updatePostByIdQuery, [post.content, post.title, post.image, post.id]);
         const updatedPost = await findPostByIdFromDb(post.id);
         return updatedPost;
     } catch (e) {
+        console.log(e);
         throw new Error(e);
     }
 };

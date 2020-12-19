@@ -68,7 +68,7 @@ class UpdatePost extends Component {
         userId,
         id: postId,
       };
-    
+        console.log(post);
       API.postUpdate(post).then((data) => {
           console.log(data)
         this.setState({

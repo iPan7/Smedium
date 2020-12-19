@@ -79,7 +79,7 @@ module.exports = {
     updatePostApi: async (req, res) => {
         const post = req.body;
         try {
-        
+        console.log(req.body);
             //This validates the post is by the user
             // const postToUpdate = await findPostByIdFromDb(post.id);
             // if (postToUpdate.userId !== req.user.id) {
