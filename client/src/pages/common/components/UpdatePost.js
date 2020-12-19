@@ -33,22 +33,54 @@ class UpdatePost extends Component {
       title: "",
       content: "",
       image: "",
+      userId: "",
       postId: null,
       post: null,
+      postSubmitted: false,
     };
   }
   componentDidMount() {
     const patharray = window.location.pathname.split("/");
     const postId = patharray[patharray.length - 1];
     API.getSinglePost(postId).then(({ data: post }) => {
-      this.setState({ post, title: post.title, content: post.content, image: post.image });
-      console.log(this.state.post);
+      this.setState({ post, title: post.title, content: post.content, image: post.image, userId: post.userId.toString() });
     });
   }
+  onChange = (input) => (e) => {
+    this.setState({
+      [input]: e.target.value,
+    });
+  };
+
+
+  updatePost = (e) => {
+    const patharray = window.location.pathname.split("/");
+    const postId = patharray[patharray.length - 1];
+    if (!this.state.title || !this.state.content) {
+      alert("All fields should be filed");
+      e.preventDefault();
+    } else {
+      const { title, content, image, userId } = this.state;
+      const post = {
+        title,
+        content,
+        image,
+        userId,
+        id: postId,
+      };
+    
+      API.postUpdate(post).then((data) => {
+          console.log(data)
+        this.setState({
+          postSubmitted: true,
+        });
+      });
+    }
+  };
+
   render() {
     const patharray = window.location.pathname.split("/");
     const postId = patharray[patharray.length - 1];
-    console.log(this.props);
     return (
       <>
         <ButtonAppBar />
@@ -73,7 +105,7 @@ class UpdatePost extends Component {
                               <i id="icons" className="fa fa-user bigicon" />
                             </span>
                             <input
-                              // onChange={this.onChange("title")}
+                              onChange={this.onChange("title")}
                               name="title"
                               type="text"
                               id="title"
@@ -87,7 +119,7 @@ class UpdatePost extends Component {
                               <i id="icons" className="fa fa-user bigicon"></i>
                             </span>
                             <input
-                              // onChange={this.onChange("image")}
+                              onChange={this.onChange("image")}
                               name="image"
                               type="text"
                               placeholder="Image URL"
@@ -103,7 +135,7 @@ class UpdatePost extends Component {
                               ></i>
                             </span>
                             <textarea
-                              // onChange={this.onChange("content")}
+                              onChange={this.onChange("content")}
                               name="content"
                               type="text"
                               placeholder="Post content..."
@@ -114,7 +146,7 @@ class UpdatePost extends Component {
                           </div>
                           <div className="form-group">
                             <Button
-                              onClick={this.submitPost}
+                              onClick={this.updatePost}
                               variant="contained"
                               style={{
                                 backgroundColor: "#328284",

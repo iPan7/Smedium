@@ -59,6 +59,7 @@ const deletePostByIdFromDb = async (postId) => {
 
 //UPDATE QUERY FUNCTION
 const updatePostByIdFromDb = async (post) => {
+    console.log('ORM', post)
     try {
         const updatePost = await findPostByIdFromDb(post.id);
         await connection.query(updatePostByIdQuery, [post.content, post.title, post.image, post.id]);

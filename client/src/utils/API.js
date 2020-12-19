@@ -56,7 +56,13 @@ export default {
     return axios.delete(`/friends/${friendId}`)
   },
 //  Update post
-  postUpdate: function (postId) {
-    return axios.put(`/post/update/${postId}`)
+  postUpdate(post) {
+    return axios.put(`/post/update/${post.id}`, post, {
+      headers: {
+        'Authorization':localStorage.getItem('token'),
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application.json',
+      }
+    })
   }
 };

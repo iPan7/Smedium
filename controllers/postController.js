@@ -77,15 +77,15 @@ module.exports = {
 
     //UPDATE POST
     updatePostApi: async (req, res) => {
-        const {postId} = req.params;
+        const post = req.body;
         try {
+        
             //This validates the post is by the user
-            const postToUpdate = await findPostByIdFromDb(postId);
-            if (postToUpdate.userId !== req.user.id) {
-                return res.status(401).send('You are unauthorized to update this post');
-            }
-            const updatePost = updatePostByIdFromDb(postId);
-            console.log(updatePost)
+            // const postToUpdate = await findPostByIdFromDb(post.id);
+            // if (postToUpdate.userId !== req.user.id) {
+            //     return res.status(401).send('You are unauthorized to update this post');
+            // }
+            const updatePost = await updatePostByIdFromDb(post);
             return res.json(updatePost)
 
         } catch (e) {
