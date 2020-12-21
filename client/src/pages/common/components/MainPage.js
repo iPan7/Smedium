@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import '../style/index.css';
 import Post from "./Post";
 import API from '../../../utils/API';
-import Comments from './Comments';
+import CommentList from './CommentList';
 
 const useStyles = makeStyles((theme) => ({
     hero: {
