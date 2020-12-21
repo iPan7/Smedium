@@ -7,7 +7,8 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Comments from './Comments';
 import Button from '@material-ui/core/Button';
-import { MDBContainer,  MDBCardHeader, MDBIcon, MDBMedia, MDBBtn, MDBPageItem, MDBPagination, MDBPageNav } from "mdbreact";
+import { MDBMedia, MDBCardHeader } from "mdbreact";
+import { use } from 'passport';
 
 const useStyles = makeStyles((theme) => ({
     blogsContainer: {
@@ -18,12 +19,27 @@ const useStyles = makeStyles((theme) => ({
 function SinglePost() {
     const { postId } = useParams();
     let [post, setPost] = useState(null);
+    let [comments, setComments] = useState();
     const classes = useStyles();
 
     useEffect(() => {
         API.getSinglePost(postId)
             .then(({data: post}) => setPost(post));
+        API.getComments()
+            .then((data) => console.log(data))
     }, [postId]);
+
+    const handleInsert = () => {
+        API.insertComment()
+            .then((data) => {
+                console.log(data)
+            })
+            .catch(e => console.log('INSERT COMMENT: error', e));
+    }
+
+    function getMappedComments(commentsMap) {
+        return commentsMap.map(comment => <Comments comment={comment}/>);
+    }
 
     if (post === null) {
         return null;
@@ -41,14 +57,19 @@ function SinglePost() {
                     <Post post={post} columnSpan={12} mediaHeight={500}/>
                 </Grid>
             </Container>
-            <Comments />
+            <MDBCardHeader className="border-0 font-weight-bold">
+                <p className="mr-4 mb-0">Comments</p>
+            </MDBCardHeader>
+            <div>
+                {/* {getMappedComments(comments)} */}
+            </div>
             <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
                     <div className="form-group mt-4">
                       <label htmlFor="quickReplyFormComment">Your comment</label>
                       <textarea className="form-control" id="quickReplyFormComment" rows="5"></textarea>
                       <div className="text-center my-4">
-                      <Button
-                            // aria-label="delete" onClick={handleDelete}
+                        <Button
+                            aria-label="delete" onClick={handleInsert}
                             variant='contained'
                             style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
                         >
@@ -56,7 +77,7 @@ function SinglePost() {
                         </Button>
                       </div>
                     </div>
-                </MDBMedia>
+            </MDBMedia>
 
         </>
     );

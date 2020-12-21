@@ -34,14 +34,17 @@ export default {
   getComments(){
     return axios.get('/comments')
   },
+  getCommentsById(id){
+    return axios.get(`/comments/findcommentbyid/${id}`)
+  },
   insertComment(){
     return axios.post('/comments/makecomment')
   },
-  updateComment(){
-    return axios.post('/comments/update')
+  updateComment(id){
+    return axios.post(`/comments/update/${id}`)
   },
   deleteComments(commentId){
-    return axios.delete(`/comments/${commentId}`)
+    return axios.delete(`/comments/deletecomments/${commentId}`)
   },
   getLoggedUsers(){
     return axios.get('/loggedUsers')

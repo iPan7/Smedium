@@ -6,11 +6,14 @@ const {
   deleteCommentsDb
 } = require("../model/commentOrm");
 
+const { fetchUserByIdFromDb } = require('../model/userOrm');
+
+
 module.exports = {
   findCommentsByPost: async (req, res) => {
     try {
-      const mainPostId = req.body.mainPostId;
-      console.log('Controller 12: find comment', req.body.mainPostId);
+      const mainPostId = req.user.id;
+      console.log('Controller 12: find comment', req.user.id);
       let postComments = await fetchCommentsByPostDb(mainPostId);
       return res.json(postComments)
     } catch (e) {

@@ -18,7 +18,7 @@ router.route('/makecomment')
 router.route('/findcommentbyid/:id')
       .get(findCommentById)
 
-router.route('/deletecomment')
+router.route('/deletecomment/:id')
       .delete(deleteComments);
 
 router.route('/update/:id')
