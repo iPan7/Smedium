@@ -31,8 +31,8 @@ export default {
   getMyPosts() {
     return axios.get(`/post/userposts`);
   },
-  getComments(){
-    return axios.get('/comments')
+  getComments(id){
+    return axios.get(`/comments/${id}`)
   },
   getCommentsById(id){
     return axios.get(`/comments/findcommentbyid/${id}`)

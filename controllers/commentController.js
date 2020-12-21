@@ -11,9 +11,11 @@ const { fetchUserByIdFromDb } = require('../model/userOrm');
 
 module.exports = {
   findCommentsByPost: async (req, res) => {
+    // const {mainPostId} = req.params
     try {
-      const mainPostId = req.user.id;
-      console.log('Controller 12: find comment', req.user.id);
+      console.log(req.params.id)
+      const mainPostId = req.params.id;
+      console.log('Controller 12: find comment', mainPostId);
       let postComments = await fetchCommentsByPostDb(mainPostId);
       return res.json(postComments)
     } catch (e) {

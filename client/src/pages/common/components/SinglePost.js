@@ -19,15 +19,28 @@ const useStyles = makeStyles((theme) => ({
 function SinglePost() {
     const { postId } = useParams();
     let [post, setPost] = useState(null);
-    let [comments, setComments] = useState();
+    const [mainPost, setMainPost] = useState('');
+    const [comments, setComments] = useState([]);
     const classes = useStyles();
 
     useEffect(() => {
         API.getSinglePost(postId)
-            .then(({data: post}) => setPost(post));
-        API.getComments()
-            .then((data) => console.log(data))
-    }, [postId]);
+            .then(({data: post}) => {
+                console.log('this is the single post request from API', post.id)
+                setMainPost(post.id)
+                setPost(post)
+                console.log('main post', mainPost)
+            });
+    }, []);
+
+    const renderComments = () => {
+        API.getComments(mainPost)
+            .then((data) => {
+                console.log('this is the get comments frontend', data)
+            })
+    }
+    renderComments();
+
 
     const handleInsert = () => {
         API.insertComment()
@@ -37,9 +50,9 @@ function SinglePost() {
             .catch(e => console.log('INSERT COMMENT: error', e));
     }
 
-    function getMappedComments(commentsMap) {
-        return commentsMap.map(comment => <Comments comment={comment}/>);
-    }
+    // function getMappedComments(comments) {
+    //     return comments.map(comment => <Comments comment={comment}/>);
+    // }
 
     if (post === null) {
         return null;

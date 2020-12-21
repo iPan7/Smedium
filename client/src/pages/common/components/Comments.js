@@ -1,21 +1,8 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import { MDBContainer, MDBCardHeader, MDBIcon, MDBMedia } from "mdbreact";
 import API from "../../../utils/API";
 
 const Comments = () => {
-  const { postId } = useParams();
-  const [ comment, setComment ] = useState();
-  
-  useEffect(() => {
-    API.getComments(postId)
-      .then((data) => {
-        console.log(data)
-        setComment(data)
-      })
-      .catch(e => console.log('COMMENT api', e))
-  }, [])
 
   return (
     <MDBContainer>
