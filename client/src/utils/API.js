@@ -31,14 +31,14 @@ export default {
   getMyPosts() {
     return axios.get(`/post/userposts`);
   },
-  getComments(id){
-    return axios.get(`/comments/${id}`)
+  getComments(mainpost){
+    return axios.get('/comments/', mainpost)
   },
   getCommentsById(id){
     return axios.get(`/comments/findcommentbyid/${id}`)
   },
-  insertComment(){
-    return axios.post('/comments/makecomment')
+  insertComment(content){
+    return axios.post(`/comments/makecomment/`, content)
   },
   updateComment(id){
     return axios.post(`/comments/update/${id}`)

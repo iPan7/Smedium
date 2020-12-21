@@ -9,10 +9,10 @@ const {
 } = require('../../controllers/commentController');
 
 // /comments
-router.route('/:id')
+router.route('/')
       .get(findCommentsByPost);
 
-router.route('/makecomment')
+router.route('/makecomment/')
       .post(insertCommentsByPost);
 
 router.route('/findcommentbyid/:id')

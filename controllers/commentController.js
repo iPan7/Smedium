@@ -13,8 +13,9 @@ module.exports = {
   findCommentsByPost: async (req, res) => {
     // const {mainPostId} = req.params
     try {
-      console.log(req.params.id)
-      const mainPostId = req.params.id;
+      // console.log('finds comment', req)
+      // console.log('finds comment params', req.params)
+      const mainPostId = req.body;
       console.log('Controller 12: find comment', mainPostId);
       let postComments = await fetchCommentsByPostDb(mainPostId);
       return res.json(postComments)
@@ -35,12 +36,11 @@ module.exports = {
   },
   insertCommentsByPost: async (req, res) => {
     try {
-      // params: { commentId: 'makepost' },
-      // query: { main: 'How', comment: 'Am', commentMaker: 'I' }
-      const mainPostId = req.body.mainPostId;
+      console.log('Insert comment', req.body)
+      const mainPostId = req.body.id;
       const content = req.body.content;
       const commentMaker = req.body.commentMaker;
-      console.log('Controller 37: insert comment', req.body);
+      console.log('Controller 37: insert comment', req.content);
       let post = await insertCommentDb(mainPostId, content, commentMaker);
       return res.json(post)
     } catch (e) {

@@ -16,34 +16,47 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 function SinglePost() {
     const { postId } = useParams();
     let [post, setPost] = useState(null);
     const [mainPost, setMainPost] = useState('');
     const [comments, setComments] = useState([]);
+    const [ content, setContent ] = useState('');
     const classes = useStyles();
 
     useEffect(() => {
+        console.log('post id', postId)
         API.getSinglePost(postId)
             .then(({data: post}) => {
-                console.log('this is the single post request from API', post.id)
-                setMainPost(post.id)
+                console.log('this is the single post request from API', post)
+                // setMainPost(post.id)
                 setPost(post)
-                console.log('main post', mainPost)
             });
+        renderComments();
     }, []);
 
     const renderComments = () => {
+        setMainPost(JSON.stringify(postId))
+        console.log('render comments function', mainPost)
         API.getComments(mainPost)
             .then((data) => {
                 console.log('this is the get comments frontend', data)
-            })
+            });
     }
-    renderComments();
 
-
+    const handleOnChange = (e) => {
+        const content = e.target.value
+        setContent(content)
+    }
+    // the handle insert funtion works
+    // - It could user more funtionality to make it more dynamic
+    // - possible a function that empties the text field and generates a new comments section
     const handleInsert = () => {
-        API.insertComment()
+        const newComment = {content: content, id: postId}
+        console.log('New Comment',newComment)
+        API.insertComment(newComment)
             .then((data) => {
                 console.log(data)
             })
@@ -79,7 +92,12 @@ function SinglePost() {
             <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
                     <div className="form-group mt-4">
                       <label htmlFor="quickReplyFormComment">Your comment</label>
-                      <textarea className="form-control" id="quickReplyFormComment" rows="5"></textarea>
+                      <textarea 
+                        className="form-control" 
+                        id="quickReplyFormComment" 
+                        rows="5"
+                        onChange={handleOnChange}>
+                        </textarea>
                       <div className="text-center my-4">
                         <Button
                             aria-label="delete" onClick={handleInsert}
