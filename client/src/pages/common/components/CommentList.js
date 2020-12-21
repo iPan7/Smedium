@@ -10,16 +10,23 @@ const CommentList = (props) => {
           <MDBCardHeader className="border-0 font-weight-bold">
             <p className="mr-4 mb-0">Comments</p>
           </MDBCardHeader>
+          
           <MDBMedia className="d-block d-md-flex mt-4">
             <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
               <h5 className="font-weight-bold mt-0">
-              <MDBIcon icon="reply" className="pull-right ml-2" />
+              username
               </h5>
-              
-              <MDBMedia className="d-block d-md-flex mt-4">
-              </MDBMedia>
+              content
             </MDBMedia>
           </MDBMedia>
+
+          <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
+              <h5 className="font-weight-bold mt-0">
+              username
+              </h5>
+              content
+            </MDBMedia>
+
         </MDBContainer>
     );
   }

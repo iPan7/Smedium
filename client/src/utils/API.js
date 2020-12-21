@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export default {
+  getUserIdFromUsername(username) {
+    return axios.get(`/loggedusers/${username}`);
+  },
   getAllPosts: function () {
     return axios.get('/post')
   },
@@ -31,11 +34,17 @@ export default {
   getMyPosts() {
     return axios.get(`/post/userposts`);
   },
-  getComments(){
+  getComments(postId){
     return axios.get('/comments')
   },
-  insertComment(){
-    return axios.post('/comments/makecomment')
+  createComment: async function (formValues) {
+    console.log(formValues)
+    try {
+      return await axios.post('/comments/makecomment', formValues)
+    } catch (e) {
+      console.log(e)
+    }
+      
   },
   updateComment(){
     return axios.post('/comments/update')
@@ -55,14 +64,11 @@ export default {
   deleteFriend(friendId){
     return axios.delete(`/friends/${friendId}`)
   },
-//  Update post
   postUpdate(post) {
     console.log(post);
     return axios.put(`/post/update/${post.id}`, post, {
       headers: {
         'authorization':localStorage.getItem('token'),
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Content-Type': 'application.json',
       }
     })
   }
