@@ -5,11 +5,10 @@ import Post from "./Post";
 import {makeStyles} from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
+import Comments from './Comments';
 import Button from '@material-ui/core/Button';
-import CommentForm from './CommentForm';
-import CommentList from './CommentList';
-import { MDBContainer,  MDBCardHeader, MDBIcon, MDBMedia, MDBBtn, MDBPageItem, MDBPagination, MDBPageNav } from "mdbreact";
-
+import { MDBMedia, MDBCardHeader } from "mdbreact";
+import { use } from 'passport';
 
 const useStyles = makeStyles((theme) => ({
     blogsContainer: {
@@ -17,37 +16,63 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 function SinglePost() {
     const { postId } = useParams();
     let [post, setPost] = useState(null);
+    const [mainPost, setMainPost] = useState('');
+    const [comments, setComments] = useState([]);
+    const [ content, setContent ] = useState('');
     const classes = useStyles();
-    const [comment, setComment] = useState('');
-    const [userId, setUserId] = useState(null);
-    const username = localStorage.getItem('user');
-
-    console.log(comment);
 
     useEffect(() => {
-        API.getComments(postId).then(res => {
-            console.log(res);
-        });
+        console.log('post id', postId)
         API.getSinglePost(postId)
-            .then(({data: post}) => setPost(post));
-        API.getUserIdFromUsername(username)
-            .then(({data}) => setUserId(data.id));
-    }, [postId]);
+            .then(({data: post}) => {
+                console.log('this is the single post request from API', post)
+                // setMainPost(post.id)
+                setPost(post)
+            });
+        renderComments();
+    }, []);
 
-    const onCommentSubmit = (e) => {
-        e.preventDefault();
-        const formValues = {
-            mainPostId: postId,
-            content: comment,
-            commentMaker: userId
-        }
-        
-        API.createComment(formValues).then((data) => {
-            setComment('');
-          });
+    const renderComments = () => {
+        setMainPost(JSON.stringify(postId))
+        console.log('render comments function', postId)
+        API.getComments(postId)
+            .then(({data}) => {
+                console.log('this is the get comments frontend', data)
+                setComments(data)
+            });
+    }
+
+    const handleOnChange = (e) => {
+        const content = e.target.value
+        setContent(content)
+    }
+    // the handle insert funtion works
+    // - It could user more funtionality to make it more dynamic
+    // - possible a function that empties the text field and generates a new comments section
+    const handleInsert = () => {
+        const newComment = {content: content, id: postId}
+        console.log('New Comment',newComment)
+        API.insertComment(newComment)
+            .then((data) => {
+                setContent('')
+                API.getComments(postId)
+                .then(({data}) => {
+                    console.log('this is the get comments frontend', data)
+                    setComments(data)
+                });
+                console.log(data)
+            })
+            .catch(e => console.log('INSERT COMMENT: error', e));
+    }
+
+    function getMappedComments() {
+        console.log('mapped comments')
+        return comments.map(comment => <Comments key={comment.id} changed={setComments} content={comment.content} id={comment.id} commentMaker={comment.commentMaker}/>);
     }
 
     if (post === null) {
@@ -66,27 +91,34 @@ function SinglePost() {
                     <Post post={post} columnSpan={12} mediaHeight={500}/>
                 </Grid>
             </Container>
-            <MDBContainer>
-          <MDBCardHeader className="border-0 font-weight-bold">
-            <p className="mr-4 mb-0">Comments</p>
-          </MDBCardHeader>
+            <MDBCardHeader className="border-0 font-weight-bold">
+                <p className="mr-4 mb-0">Comments</p>
+            </MDBCardHeader>
+            <div>
+                {getMappedComments(comments)}
+            </div>
+            <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
+                    <div className="form-group mt-4">
+                      <label htmlFor="quickReplyFormComment">Your comment</label>
+                      <textarea 
+                        className="form-control" 
+                        id="quickReplyFormComment"
+                        placeholder="Make a comment" 
+                        rows="5"
+                        onChange={handleOnChange}>
+                        </textarea>
+                      <div className="text-center my-4">
+                        <Button
+                            aria-label="delete" onClick={handleInsert}
+                            variant='contained'
+                            style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
+                        >
+                            Submit
+                        </Button>
+                      </div>
+                    </div>
+            </MDBMedia>
 
-        </MDBContainer>
-        <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
-      <form className="form-group mt-4" onSubmit={onCommentSubmit}>
-        <label htmlFor="quickReplyFormComment">Your comment</label>
-        <textarea className="form-control" id="quickReplyFormComment" rows="5" value={comment} onChange={(e) => setComment(e.target.value)}></textarea>
-        <div className="text-center my-4">
-        <Button
-              variant='contained'
-              style={{backgroundColor: '#4f3558', color: '#fff', width: '15px'}}
-              type="submit"
-          >
-              Submit
-          </Button>
-        </div>
-      </form>
-  </MDBMedia>
         </>
     );
 }

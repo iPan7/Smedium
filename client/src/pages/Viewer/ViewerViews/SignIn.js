@@ -57,7 +57,6 @@ const SignIn = (props) => {
         try {
             const res = await API.doSignIn(formValues);
             localStorage.setItem('token', res.data);
-            localStorage.setItem('user', formValues.username);
             dispatch(setViewerToken(res.data));
             history.push('/');
         } catch (e) {

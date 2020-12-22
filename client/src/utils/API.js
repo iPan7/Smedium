@@ -1,9 +1,6 @@
 import axios from "axios";
 
 export default {
-  getUserIdFromUsername(username) {
-    return axios.get(`/loggedusers/${username}`);
-  },
   getAllPosts: function () {
     return axios.get('/post')
   },
@@ -34,23 +31,24 @@ export default {
   getMyPosts() {
     return axios.get(`/post/userposts`);
   },
-  getComments(postId){
-    return axios.get('/comments')
+  getComments(mainpost){
+    return axios.get(`/comments?q=${mainpost}`)
   },
-  createComment: async function (formValues) {
-    console.log(formValues)
-    try {
-      return await axios.post('/comments/makecomment', formValues)
-    } catch (e) {
-      console.log(e)
-    }
-      
+  getCommentsById(id){
+    return axios.get(`/comments/findcommentbyid/${id}`)
   },
-  updateComment(){
-    return axios.post('/comments/update')
+  insertComment(content){
+    return axios.post(`/comments/makecomment/`, content)
+  },
+  updateComment(id){
+    return axios.post(`/comments/update/${id}`)
   },
   deleteComments(commentId){
-    return axios.delete(`/comments/${commentId}`)
+    return axios.delete(`/comments/deletecomment/${commentId}`, {headers: {
+      'authorization':localStorage.getItem('token'),
+      // 'Access-Control-Allow-Origin': '*',
+      // 'Content-Type': 'application.json',
+    }})
   },
   getLoggedUsers(){
     return axios.get('/loggedUsers')
@@ -61,14 +59,20 @@ export default {
   insertFriends(){
     return axios.post('/friends/newfriend')
   },
+  insertLiked(){
+    return axios.put('/post')
+  },
   deleteFriend(friendId){
     return axios.delete(`/friends/${friendId}`)
   },
+//  Update post
   postUpdate(post) {
     console.log(post);
     return axios.put(`/post/update/${post.id}`, post, {
       headers: {
         'authorization':localStorage.getItem('token'),
+        // 'Access-Control-Allow-Origin': '*',
+        // 'Content-Type': 'application.json',
       }
     })
   }

@@ -43,7 +43,7 @@ const jwtOptions = {
 };
 
 const jwtStrategy = new JwtStrategy(jwtOptions, async (jwtToken, done) => {
-  console.log(jwtToken);
+  console.log('jwtToken information', jwtToken);
   // { sub: idOfTheUser, iat: timeThatThisTokenWasCreated }
   let user;
 
@@ -56,9 +56,10 @@ const jwtStrategy = new JwtStrategy(jwtOptions, async (jwtToken, done) => {
   if (!user) {
     return done(null, false);
   } else {
-    console.log('yee');
+    console.log('This is in passport yee');
     // take the user that is being passed as the 2nd parameter
     // and attach it to req.user on the next request
+    console.log('jwtstrategy user');
     return done(null, user);
   }
 

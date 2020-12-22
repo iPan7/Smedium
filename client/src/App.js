@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from './pages/common/components/Navbar';
+import Comments from './pages/common/components/Comments';
 import MainPage from './pages/common/components/MainPage';
 import CreatePost from './pages/common/components/CreatePost';
 import SinglePost from "./pages/common/components/SinglePost";

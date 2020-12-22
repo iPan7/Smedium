@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => {
 const Post = (props) => {
     const [deleted, setDeleted] = useState(false);
     const {post, columnSpan, mediaHeight} = props;
-    const {id, title, image, content, datetime_created, username, userId, idOfCurrentUser} = post;
+    const {id, title, image, content, datetime_created, username, userId, idOfCurrentUser, avatar} = post;
     const options = {year: 'numeric', month: 'short', day: 'numeric'};
     const formattedDateTime = new Date(datetime_created).toLocaleDateString("en-US", options);
     const classes = useStyles();
@@ -61,6 +61,12 @@ const Post = (props) => {
                 .then(() => setDeleted(true));
         }
     }
+
+    // const insertLiked = () => {
+    //     if (){
+
+    //     } else ()
+    // }
 
     if(deleted) {
         return (
@@ -96,21 +102,23 @@ const Post = (props) => {
                     <Box className={classes.author}>
                         <Box ml={6}>
                             <Typography variant="subtitle2" component="p">
-                                Author: {username}
+                                Author: {username} {avatar}
                             </Typography>
                             <Typography variant="subtitle2" color="textSecondary" component="p">
                                 Date: {formattedDateTime}
                             </Typography>
                         </Box>
                     </Box>
+                    <FavoriteIcon />
                     {/*THIS LINKS THE EDIT BUTTON TO THE EDIT POST PAGE*/}
                     {postBelongsToCurrentUser && (
+                    
                     <Link to={`/posts/update/${id}`}>
                         <Button
 
                             // onClick={this.editPost}
                             variant='contained'
-                            style={{backgroundColor: '#4f3558', color: '#fff', marginLeft: '100px'}}
+                            style={{backgroundColor: '#4f3558', color: '#fff', marginLeft: '30px'}}
                         >
                             Edit
                         </Button>
@@ -124,6 +132,7 @@ const Post = (props) => {
                         >
                             Delete
                         </Button>
+                        
                     </Box>)}
                 </CardActions>
             </Card>

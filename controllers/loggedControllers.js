@@ -1,6 +1,5 @@
 const {
-      fetchUsersByIsLoggedFromDb,
-      findUserIdByUsernameFromDb,
+      fetchUsersByIsLoggedFromDb
     } = require("../model/loggedOrm");
     
     module.exports = {
@@ -11,16 +10,5 @@ const {
         } catch (e) {
           res.status(401).json(e);
         }
-      },
-      findUserIdByUsernameApi: async (req, res) => {
-        try {
-          console.log(req.params.username)
-          const username = req.params.username;
-          let userId = await findUserIdByUsernameFromDb(username);
-          return res.json(userId);
-        } catch (e) {
-          res.status(401).json(e);
-        }
       }
-
 }

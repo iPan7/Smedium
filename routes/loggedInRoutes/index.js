@@ -1,16 +1,15 @@
 const router = require('express').Router();
 
 const {
-      findUsersByLoggedInUserApi,
-      findUserIdByUsernameApi,
+      findUsersByLoggedInUserApi
 } = require('../../controllers/loggedControllers');
 
 const authMiddleware = require('../../middlewares/authorizationMiddleware');
 
+// router.use(authMiddleware);
+
+// /api/loggedusers
 router.route('/')
     .get(findUsersByLoggedInUserApi);
-
-router.route('/:username')
-    .get(findUserIdByUsernameApi);
 
 module.exports = router;
