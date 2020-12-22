@@ -34,11 +34,9 @@ JWT_SECRET=asdyuofgayudagdyuadsgar837rgsdada
 
 Project 3 improvment ideas
 
-Finish CRUD add update function
-Add comment section for users
+Finish comment section for users
 Add like/unlike post option
 Add search function
-Fix non login user from not seeing post on the front page
 Add multi language options
 Friends List
 Account setting where you can add your avatar/profile picture
