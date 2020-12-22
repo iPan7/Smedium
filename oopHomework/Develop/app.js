@@ -5,6 +5,7 @@ const inquirer = require("inquirer");
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
+const employee = require("./lib/Intern");
 
 //Welcome to the Team Generator Information Page
 
@@ -61,13 +62,13 @@ const managerData = () => {
       );
       teamTitle = managerAnswers.teamTitle;
       console.log("Onboarding Employee's information.");
-      lesserEmployeeData();
+      lowerEmployeeData();
     });
 };
 
 //Repeated if there are more employees that have to be added
 
-const lesserEmployeeData = () => {
+const lowerEmployeeData = () => {
   inquirer
     .prompt([
       {
@@ -140,7 +141,7 @@ const lesserEmployeeData = () => {
       }
 
       if (answers.newEmployee === true) {
-        lesserEmployeeData();
+        lowerEmployeeData();
       } else {
         //HTML rendering. Use of 'var' to correlate with grabbing info from HTML
 
