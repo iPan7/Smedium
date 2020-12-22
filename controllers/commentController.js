@@ -13,9 +13,9 @@ module.exports = {
   findCommentsByPost: async (req, res) => {
     // const {mainPostId} = req.params
     try {
-      // console.log('finds comment', req)
+      console.log('finds comment', req.query.q)
       // console.log('finds comment params', req.params)
-      const mainPostId = req.body;
+      const mainPostId = req.query.q;
       console.log('Controller 12: find comment', mainPostId);
       let postComments = await fetchCommentsByPostDb(mainPostId);
       return res.json(postComments)
@@ -59,15 +59,15 @@ module.exports = {
     }
   },  
   deleteComments: async (req, res) => {
-    console.log('1st delete cl', req.body)
-    const id = req.body['id'];
+    console.log('1st delete cl', req.params)
+    const id = req.params.id;
     console.log('2nd delete. Controller: delete comment', id);
     try {
       const commentToDelete = await fetchCommentsByIdDb(id);
       console.log('controller 60: comment to delete', commentToDelete);
-      if (id != commentToDelete.id) {
-        return res.status(401).json('You are not authorized to delete this comment')
-      } 
+      // if (id != commentToDelete.id) {
+      //   return res.status(401).json('You are not authorized to delete this comment')
+      // } 
       const deletedComment = await deleteCommentsDb(id)
       // return res.json('It hit this delete', deletedComment)
       res.json({success: true})

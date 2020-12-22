@@ -32,7 +32,7 @@ export default {
     return axios.get(`/post/userposts`);
   },
   getComments(mainpost){
-    return axios.get('/comments/', mainpost)
+    return axios.get(`/comments?q=${mainpost}`)
   },
   getCommentsById(id){
     return axios.get(`/comments/findcommentbyid/${id}`)
@@ -44,7 +44,11 @@ export default {
     return axios.post(`/comments/update/${id}`)
   },
   deleteComments(commentId){
-    return axios.delete(`/comments/deletecomments/${commentId}`)
+    return axios.delete(`/comments/deletecomment/${commentId}`, {headers: {
+      'authorization':localStorage.getItem('token'),
+      // 'Access-Control-Allow-Origin': '*',
+      // 'Content-Type': 'application.json',
+    }})
   },
   getLoggedUsers(){
     return axios.get('/loggedUsers')
@@ -54,6 +58,9 @@ export default {
   },
   insertFriends(){
     return axios.post('/friends/newfriend')
+  },
+  insertLiked(){
+    return axios.put('/post')
   },
   deleteFriend(friendId){
     return axios.delete(`/friends/${friendId}`)

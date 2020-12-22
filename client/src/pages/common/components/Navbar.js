@@ -95,6 +95,7 @@ export default function ButtonAppBar() {
           <React.Fragment>
             <Button a href="/createpost" color="inherit">Create Post</Button>
             <Button a href="/posts/mine" color="inherit">My Posts</Button>
+            <Button a href="/myaccount" color="inherit">My Account</Button>
             <Button
               color='inherit'
               onClick={handleSignOut}

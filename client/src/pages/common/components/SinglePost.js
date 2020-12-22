@@ -39,10 +39,11 @@ function SinglePost() {
 
     const renderComments = () => {
         setMainPost(JSON.stringify(postId))
-        console.log('render comments function', mainPost)
-        API.getComments(mainPost)
-            .then((data) => {
+        console.log('render comments function', postId)
+        API.getComments(postId)
+            .then(({data}) => {
                 console.log('this is the get comments frontend', data)
+                setComments(data)
             });
     }
 
@@ -58,14 +59,21 @@ function SinglePost() {
         console.log('New Comment',newComment)
         API.insertComment(newComment)
             .then((data) => {
+                setContent('')
+                API.getComments(postId)
+                .then(({data}) => {
+                    console.log('this is the get comments frontend', data)
+                    setComments(data)
+                });
                 console.log(data)
             })
             .catch(e => console.log('INSERT COMMENT: error', e));
     }
 
-    // function getMappedComments(comments) {
-    //     return comments.map(comment => <Comments comment={comment}/>);
-    // }
+    function getMappedComments() {
+        console.log('mapped comments')
+        return comments.map(comment => <Comments key={comment.id} changed={setComments} content={comment.content} id={comment.id} commentMaker={comment.commentMaker}/>);
+    }
 
     if (post === null) {
         return null;
@@ -87,14 +95,15 @@ function SinglePost() {
                 <p className="mr-4 mb-0">Comments</p>
             </MDBCardHeader>
             <div>
-                {/* {getMappedComments(comments)} */}
+                {getMappedComments(comments)}
             </div>
             <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
                     <div className="form-group mt-4">
                       <label htmlFor="quickReplyFormComment">Your comment</label>
                       <textarea 
                         className="form-control" 
-                        id="quickReplyFormComment" 
+                        id="quickReplyFormComment"
+                        placeholder="Make a comment" 
                         rows="5"
                         onChange={handleOnChange}>
                         </textarea>
