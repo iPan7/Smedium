@@ -32,7 +32,7 @@ JWT_SECRET=asdyuofgayudagdyuadsgar837rgsdada
  DUE DATE ON  NOVEMBER 14
  -->
 
-Project 3 improvment ideas
+Project improvment ideas
 
 Finish comment section for users
 Add like/unlike post option
