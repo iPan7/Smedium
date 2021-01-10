@@ -1,4 +1,7 @@
 <!-- Step 1 Clone this repo somewhere in your machine
+
+https://smediumblog.herokuapp.com/
+
 Step 2 is cd into this repo, and then run
 MAC rm -rf .git
 Windows Powershell rm -force .git
