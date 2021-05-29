@@ -18,7 +18,7 @@ const Comments = (props) => {
       <MDBMedia className="d-block d-md-flex mt-4">
         <MDBMedia body className="text-center text-md-left ml-md-3 ml-0">
           <h5 className="font-weight-bold mt-0">
-            Miley Steward {'This from comments', props.commentMaker}
+           {'This from comments', props.commentMaker}
             <DeleteIcon onClick={deleteComment}/>
           </h5>
             
