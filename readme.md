@@ -1,6 +1,6 @@
 # User Story
 
-Our Users would liket to make posts and respond to each other in a very streamlined way. They would like to respond to their friends and conversations with the information being easily available. 
+Our Users would like to make posts and respond to each other in a very streamlined way. They would like to respond to their friends and conversations with the information being easily available. 
 
 ## The Issue
  * Needing a functional website that displays posts and languages and pictures I like 
